@@ -973,23 +973,23 @@ var total_TOTAL_mint_count_HASH = 0;
 			  total_mint_count_HASH[mintData[2]] +=  1;
 
 			}
-			 total_TOTAL_mint_count_HASH+=mintData[3]/50;
+			 total_TOTAL_mint_count_HASH+=mintData[3]/25;
 			 
-			 totalZKBTC_Mined_HASH[mintData[2]] += mintData[3]/50;
+			 totalZKBTC_Mined_HASH[mintData[2]] += mintData[3]/25;
 
 			 
 			 
 		 }
 		  
         if (miner_block_count[mintData[2]] === undefined) {
-          miner_block_count[mintData[2]] =  mintData[3]/50;
+          miner_block_count[mintData[2]] =  mintData[3]/25;
 	  if(miner_block_count2[mintData[2]]  === undefined &&  mintData[3] != 0) {
 		  miner_block_count2[mintData[2]] =  1;
 	  }else if(  mintData[3] != 0 ){
 		miner_block_count2[mintData[2]] +=  1;
 	  }
         } else {
-          miner_block_count[mintData[2]]+=  mintData[3]/50;
+          miner_block_count[mintData[2]]+=  mintData[3]/25;
 	  if(miner_block_count2[mintData[2]]  === undefined &&  mintData[3] != 0) {
 		  miner_block_count2[mintData[2]] =  1;
 	  }else if(  mintData[3] != 0 ){
@@ -1001,10 +1001,10 @@ var total_TOTAL_mint_count_HASH = 0;
 	}
 
         if (total_block_count == 0) {
-          total_block_count =  mintData[3]/50;
+          total_block_count =  mintData[3]/25;
 		
         } else {
-          total_block_count+=  mintData[3]/50;
+          total_block_count+=  mintData[3]/25;
 		
         }
 
@@ -1101,7 +1101,7 @@ var total_TOTAL_mint_count_HASH = 0;
 		
 		if(dataAmt !=0 && block_number > last_difficulty_start_block ){
 			
-			 total_TOTAL_mint_count_HASH+=dataAmt/50;
+			 total_TOTAL_mint_count_HASH+=dataAmt/25;
 			 if(miner_block_countHASH[miner_address] === undefined) {
 				miner_block_countHASH[miner_address] = dataAmt;
 			  } else {
@@ -1118,13 +1118,13 @@ var total_TOTAL_mint_count_HASH = 0;
 			  total_mint_count_HASH[miner_address]+=  1;
 
 			}
-			totalZKBTC_Mined_HASH[miner_address] += dataAmt/50;
+			totalZKBTC_Mined_HASH[miner_address] += dataAmt/25;
 			
 		}
 		
 		
       if(miner_block_count[miner_address] === undefined) {
-        miner_block_count[miner_address] = dataAmt/50;
+        miner_block_count[miner_address] = dataAmt/25;
 	if(dataAmt !=0){
      		miner_block_count2[miner_address] = 1;
 	}else{
@@ -1133,7 +1133,7 @@ var total_TOTAL_mint_count_HASH = 0;
 	totalZKBTC_Mined[miner_address] = dataAmt;
 	totalZKTC_Calculated += dataAmt;
       } else {
-        miner_block_count[miner_address] += dataAmt/50;
+        miner_block_count[miner_address] += dataAmt/25;
 	if(dataAmt !=0){
         	miner_block_count2[miner_address] += 1;
 	}
@@ -1143,7 +1143,7 @@ var total_TOTAL_mint_count_HASH = 0;
         
 	if(dataAmt !=0){
 		total_tx_count+=1;
-		total_block_count+=   dataAmt/50;
+		total_block_count+=   dataAmt/25;
 	}
     });
 	
@@ -1155,9 +1155,9 @@ var total_TOTAL_mint_count_HASH = 0;
      log('error filtering txs:', error);
      log('repeat run', run);
      run = run - 1
-	  if(attempts > 5){
-		  run = run +1
-	  }
+	 // if(attempts > 19){
+	//	  run = run +1
+	//  }
 	  attempts = attempts + 1;
      sleep(500)
   });
@@ -1320,7 +1320,7 @@ console.log("Combined Addresses: ", combinedAddresses);
     /* create sorted list of RECENT miners */
     sorted_miner_block_count_recent_hash = []
     for(var m in miner_block_countHASH) {
-      sorted_miner_block_count_recent_hash.push([m, miner_block_countHASH[m]/50, miner_block_countHASH[m], total_mint_count_HASH[m]]);
+      sorted_miner_block_count_recent_hash.push([m, miner_block_countHASH[m]/25, miner_block_countHASH[m], total_mint_count_HASH[m]]);
     }
     /* descending */
     sorted_miner_block_count_recent_hash.sort((a, b) => {return b[1] - a[1];});
@@ -1499,7 +1499,7 @@ const formattedNumbertotalzkBTCMinted = new Intl.NumberFormat(navigator.language
 				
 				
 
-			var parzedint = parseInt(totalzkBTCMinted/50);
+			var parzedint = parseInt(totalzkBTCMinted/25);
 const formattedNumberparzedint = new Intl.NumberFormat(navigator.language).format(parzedint);
 
 
