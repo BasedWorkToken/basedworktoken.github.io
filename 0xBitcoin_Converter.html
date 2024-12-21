@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0xBitcoin <-> Base Work Token (BWORK) Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.10.0/web3.min.js"></script>
+    <style>
+	     body { 
+            font-family: Arial, sans-serif; 
+            max-width: 600px;
+            margin: 20px auto; 
+            padding: 20px; 
+            background-color: #f4f4f4; 
+        }
+        button { 
+            margin: 10px 0; 
+            padding: 10px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        }
+        .balance-section {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #status {
+            color: green;
+            margin-top: 10px;
+        }
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
+        #status2 {
+            color: green;
+            margin-top: 10px;
+        }
+        #error2 {
+            color: red;
+            margin-top: 10px;
+        }
+		.container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+		 .function-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+		
+		  .compact-balance-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .compact-balance-item {
+            background-color: #f4f4f4;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .compact-balance-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .compact-balance-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 0.9em;
+            color: #333;
+        }
+        
+        .compact-balance-item p {
+            margin: 0;
+            font-weight: bold;
+            color: #007bff;
+        }
+		.faucet-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4285F4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faucet-button:hover {
+            background-color: #357AE8;
+        }
+
+        .faucet-button:active {
+            background-color: #2F5BB7;
+        }
+        
+		
+	  .btn-toggle {
+	    color: white;
+	    background-color: gray;
+	  }
+
+	  #my-toggle:checked + .btn-toggle {
+	    background-color: red;
+	  }
+
+	  #my-toggle:not(:checked) + .btn-toggle {
+	    background-color: green;
+	  }
+
+    </style>
+</head>
+<body>
+    <h1>0xBitcoin Token Converter</h1>
+    
+    <button id="connectButton">Connect MetaMask</button>
+      <div id="balanceSection" style="display:none;">
+	  <div class="MetamaskAccount">
+	  <center><p id="connectedAccount">Loading...</p></center>
+	  </div>
+        <div class="compact-balance-container">
+            <div class="compact-balance-item">
+                <h4>ETH</h4>
+                <p id="ethBalance">Loading...</p>
+            </div>
+            
+            <div class="compact-balance-item">
+                <h4>Base Work Token:</h4>
+                <p id="token3Balance">Loading...</p>
+            </div>
+            
+            <div class="compact-balance-item">
+                <h4>Rights to 0xBitcoin</h4>
+                <p id="token1Balance">Loading...</p>
+            </div>
+            
+            <div class="compact-balance-item">
+                <h4>0xBitcoin</h4>
+                <p id="token2Balance">Loading...</p>
+            </div>
+        </div>
+    </div>
+    <div id="status"> </div>
+    <div id="error"></div>
+    <div class="container">
+        <div id="functionsSection" style="display:none;">
+            <div class="function-section">
+                <h2>Deposit 0xBitcoin Token to Base Work Token</h2>
+                <input type="number" id="depositAmount" placeholder="Enter Deposit Amount">
+                <button id="depositButton">Deposit</button>
+            </div>
+
+            <div class="function-section">
+                <h2>Withdraw Base Work Token to 0xBitcoin Token</h2>
+                <input type="number" id="withdrawAmount" placeholder="Enter Withdrawal Amount">
+                <button id="withdrawButton">Withdraw</button>
+            </div>
+        </div>
+        
+    <div id="status2"> </div>
+    <div id="error2"></div>
+	
+	</div>
+	
+	
+	<a id="sepoliaFaucetButton" 
+       href="https://www.alchemy.com/faucets/base-sepolia" 
+       class="faucet-button" 
+	   style="display:none;"
+       target="_blank" 
+       rel="noopener noreferrer">
+        Login with Alchemy and get Testnet Sepolia ETH
+    </a>
+    <div class="container">
+        <div id="withdrawalSection" style="display:none;">
+         <h1>Recieve 10 0xBTC v1 For Testing the dAPP</h1>
+		 <button id="AirdropButton">Recieve 10 0xBTC v1 Tokens</button>
+        </div><br>
+	<h4 id="ChecKBelow"  style="display:none;">Check the box Below for an Approve then Deposit transactions instead of 1 transction for 0xBitcoin deposits</h4>
+	<input type="checkbox" id="my-toggle" class="btn-check" style="display:none !important;">
+
+		
+    </div>
+
+			<div id="balanceSection2" style="display:none;">
+		
+	<!--
+        <div class="balance-section">
+            <h3>Rights to 0xBTC v1 Allowance</h3>
+            <p id="tokenAllowance">Loading...</p>
+            
+            <div>
+                <button id="approveButton">Approve Rights to 0xBTC v1 Tokens</button>
+            </div> 
+        </div>
+		-->
+        <div class="balance-section">
+            <h3>0xBitcoin v1 Approve</h3>
+            <p id="tokenAllowance2">Loading...</p>
+            
+            <div>
+                <button id="approveButton2">Approve 0xBitcoin v1 Tokens</button>
+            </div>
+        </div>
+    </div>
+		 <button id="doNothingImportantButton" style="display:none;" >Show Call Approve Functions</button>
+
+    <script>
+    
+    
+        // Token Contract ABIs and Addresses (replace with your actual contracts)
+        const TOKEN1_ADDRESS = '0xb9d1fFDA9F44bD57191145297d2FEaEf097De4dd'; // RightsTo0xBitcoin Token (R0xBTC)
+        const TOKEN2_ADDRESS = '0x13AC73f187822db758B9c1f6ADda08A15640794F'; // Mock 0xBitcoin Contract (M0xBTC)
+        const TOKEN3_ADDRESS = '0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f'; // Base Work Token (Main contract)
+        const Token_Mining_address = '0x145a6c4421C14486A4f1bDe654ACc56ea810316D';
+          
+        var isEnabled = false;
+        
+        
+        
+        
+        
+        
+        
+        
+		 // Contract ABI for deposit and withdraw functions
+        const CONTRACT_ABI3 = [
+            {
+                "constant": false,
+                "inputs": [
+                    {"name": "amount", "type": "uint256"}
+                ],
+                "name": "depositFromV1toV2",
+                "outputs": [],
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {"name": "amount", "type": "uint256"}
+                ],
+                "name": "withdrawFromV2toV1",
+                "outputs": [],
+                "type": "function"
+            }
+        ];
+		
+        const TOKEN1_ABI = [
+            {
+                "constant": true,
+                "inputs": [{"name": "_owner", "type": "address"}],
+                "name": "balanceOf",
+                "outputs": [{"name": "balance", "type": "uint256"}],
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {"name": "owner", "type": "address"},
+                    {"name": "spender", "type": "address"}
+                ],
+                "name": "allowance",
+                "outputs": [{"name": "remaining", "type": "uint256"}],
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {"name": "spender", "type": "address"},
+                    {"name": "value", "type": "uint256"}
+                ],
+                "name": "approve",
+                "outputs": [{"name": "", "type": "bool"}],
+                "type": "function"
+            },
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [{"name": "", "type": "uint8"}],
+				"type": "function"
+			}
+        ];
+
+        let web3, accounts, token1Contract, token2Contract, token3Contract;
+		let bal1,bal2,bal3;
+		let app1,app2,app3;
+		
+		let bobby = 1;
+		let dobby = 1;
+        document.getElementById('connectButton').addEventListener('click', connectMetaMask);
+        //document.getElementById('approveButton').addEventListener('click', approveTokens);
+        document.getElementById('approveButton2').addEventListener('click', approveTokens2);
+        document.getElementById('AirdropButton').addEventListener('click', AirdropV1Tokens);
+        document.getElementById('depositButton').addEventListener('click', depositTokensSTUFF);
+        document.getElementById('depositButton').addEventListener('click', depositTokens);
+        document.getElementById('withdrawButton').addEventListener('click', withdrawTokensSTUFF);
+        document.getElementById('withdrawButton').addEventListener('click', withdrawTokens);
+        document.getElementById('doNothingImportantButton').addEventListener('click', doNothingImportant);
+
+        async function doNothingImportant() {
+			
+                    document.getElementById('balanceSection2').style.display = 'block';
+		}
+		
+        async function connectMetaMask() {
+	    if (window.ethereum) {
+		web3 = new Web3(window.ethereum);
+		try {
+		    // Request account access
+		    accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+		    document.getElementById('connectedAccount').textContent = `Connected Account: ${accounts[0]}`;
+
+		    // Check and switch to Base Sepolia
+		    const chainId = await web3.eth.getChainId();
+		    console.log("ChainID: ",chainId);
+		    if (chainId !== 84532) {
+		        try {
+		            await window.ethereum.request({
+		                method: 'wallet_switchEthereumChain',
+		                params: [{ chainId: '0x14a34' }] // Chain ID in hexadecimal (84532 = 0x14a34)
+		            });
+		            document.getElementById('status').textContent = 'Switched to Base Sepolia Network';
+		            document.getElementById('status2').textContent = 'Switched to Base Sepolia Network';
+		        } catch (switchError) {
+		            // Add network if not available
+		            if (switchError.code === 4902) {
+		                try {
+		                    await window.ethereum.request({
+		                        method: 'wallet_addEthereumChain',
+		                        params: [{
+		                            chainId: '0x14a34',
+		                            chainName: 'Base Sepolia Testnet',
+		                            rpcUrls: ['https://sepolia.base.org'],
+		                            blockExplorerUrls: ['https://sepolia.basescan.org'],
+		                            nativeCurrency: {
+		                                name: 'Ether',
+		                                symbol: 'ETH',
+		                                decimals: 18
+		                            }
+		                        }]
+		                    });
+		                    document.getElementById('status').textContent = 'Added and switched to Base Sepolia Network';
+		                    document.getElementById('status2').textContent = 'Added and switched to Base Sepolia Network';
+		                } catch (addError) {
+		                    document.getElementById('error').textContent = 'Failed to add Base Sepolia: ' + addError.message;
+		                    document.getElementById('error2').textContent = 'Failed to add Base Sepolia: ' + addError.message;
+		                }
+		            } else {
+		                document.getElementById('error').textContent = 'Failed to switch network: ' + switchError.message;
+		                document.getElementById('error2').textContent = 'Failed to switch network: ' + switchError.message;
+		            }
+		        }
+		    } else {
+		        document.getElementById('status').textContent = 'Connected to Base Sepolia Network';
+		        document.getElementById('status2').textContent = 'Connected to Base Sepolia Network';
+		    }
+
+		    // Show sections and initialize contracts
+		    document.getElementById('balanceSection').style.display = 'block';
+		    document.getElementById('balanceSection2').style.display = 'none';
+		    document.getElementById('withdrawalSection').style.display = 'block';
+		    document.getElementById('functionsSection').style.display = 'block';
+		    document.getElementById('sepoliaFaucetButton').style.display = 'block';
+		    document.getElementById('my-toggle').style.display = 'block';
+		    document.getElementById('ChecKBelow').style.display = 'block';
+
+		    document.getElementById('doNothingImportantButton').style.display = 'block';
+		    // Initialize contracts
+		    token1Contract = new web3.eth.Contract(TOKEN1_ABI, TOKEN1_ADDRESS);
+		    token2Contract = new web3.eth.Contract(TOKEN1_ABI, TOKEN2_ADDRESS);
+		    token3Contract = new web3.eth.Contract(TOKEN1_ABI, TOKEN3_ADDRESS);
+
+		    // Fetch balances
+		    await Promise.all([
+		        fetchETHBalance(),
+		        fetchTokenBalance(token1Contract, 'token1Balance'),
+		        fetchTokenBalance(token2Contract, 'token2Balance'),
+		        fetchTokenBalance(token3Contract, 'token3Balance'),
+		        fetchTokenAllowance(),
+		        fetchTokenAllowance2()
+		    ]);
+
+		} catch (error) {
+		    document.getElementById('error').textContent = 'Connection failed: ' + error.message;
+		    document.getElementById('error2').textContent = 'Connection failed: ' + error.message;
+		}
+	    } else {
+		document.getElementById('error').textContent = 'MetaMask not detected!';
+		document.getElementById('error2').textContent = 'MetaMask not detected!';
+	    }
+	}
+
+
+        async function fetchETHBalance() {
+            try {
+                const balanceWei = await web3.eth.getBalance(accounts[0]);
+                const balanceETH = web3.utils.fromWei(balanceWei, 'ether');
+                document.getElementById('ethBalance').textContent = `${parseFloat(balanceETH).toFixed(4)} ETH`;
+            } catch (error) {
+                document.getElementById('ethBalance').textContent = 'Error fetching balance';
+            }
+        }
+
+        async function fetchTokenBalance(contract, elementId) {
+            try {
+                const balance = await contract.methods.balanceOf(accounts[0]).call();
+                const decimals = await contract.methods.decimals().call();
+                const formattedBalance = balance / (10 ** decimals);
+                document.getElementById(elementId).textContent = `${formattedBalance.toFixed(4)} Tokens`;
+				if(elementId == 'token1Balance'){
+					bal1= balance;
+				}
+				if(elementId == 'token2Balance'){
+					bal2= balance;
+				}
+				if(elementId == 'token3Balance'){
+					bal3= balance;
+				}
+            } catch (error) {
+                document.getElementById(elementId).textContent = 'Error fetching token balance' + error;
+            }
+        }
+
+        async function fetchTokenAllowance() {
+            try {
+                const spenderAddress = TOKEN3_ADDRESS;
+                const allowance = await token1Contract.methods.allowance(accounts[0], spenderAddress).call();
+				app1=allowance;
+                const decimals = await token1Contract.methods.decimals().call();
+                const formattedAllowance = allowance / (10 ** decimals);
+               // document.getElementById('tokenAllowance').textContent = `${formattedAllowance.toFixed(4)} Tokens`;
+            } catch (error) {
+               // document.getElementById('tokenAllowance').textContent = 'Error fetching allowance';
+            }
+        }
+
+        async function fetchTokenAllowance2() {
+            try {
+                const spenderAddress = TOKEN3_ADDRESS;
+                const allowance = await token2Contract.methods.allowance(accounts[0], spenderAddress).call();
+                const decimals = await token2Contract.methods.decimals().call();
+				app2=allowance;
+                const formattedAllowance = allowance / (10 ** decimals);
+                document.getElementById('tokenAllowance2').textContent = `${formattedAllowance.toFixed(4)} Tokens`;
+            } catch (error) {
+                document.getElementById('tokenAllowance2').textContent = 'Error fetching allowance';
+            }
+        }
+
+        async function approveTokens() {
+            const spenderAddress = TOKEN3_ADDRESS;
+            const approveAmount = 21000000;
+
+            if (!spenderAddress || !approveAmount) {
+                document.getElementById('error').textContent = 'Please enter spender address and amount';
+                document.getElementById('error2').textContent = 'Please enter spender address and amount';
+                return;
+            }
+
+            try {
+                const decimals = 18;
+				
+				// Use web3.utils.toBN to handle large numbers
+				const tokenAmount = web3.utils.toBN(approveAmount)
+					.mul(web3.utils.toBN(10 ** decimals));
+				
+                await token1Contract.methods.approve(spenderAddress, tokenAmount)
+                    .send({ from: accounts[0] });
+                
+                document.getElementById('status').textContent = 'Tokens approved successfully!';
+                document.getElementById('status2').textContent = 'Tokens approved successfully!';
+                await fetchTokenAllowance(); // Refresh allowance after approval
+            } catch (error) {
+                document.getElementById('error').textContent = 'Approval failed: ' + error.message;
+                document.getElementById('error2').textContent = 'Approval failed: ' + error.message;
+            }
+        }
+		
+		
+        async function approveTokens2() {
+            const spenderAddress = TOKEN3_ADDRESS;
+            const approveAmount = 21000000*10**8;
+
+            if (!spenderAddress || !approveAmount) {
+                document.getElementById('error').textContent = 'Please enter spender address and amount';
+                document.getElementById('error2').textContent = 'Please enter spender address and amount';
+                return;
+            }
+
+            try {
+                //const decimals = await token2Contract.methods.decimals().call();
+				
+				// Use web3.utils.toBN to handle large numbers
+				const tokenAmount = web3.utils.toBN(approveAmount);
+				
+                await token2Contract.methods.approve(spenderAddress, tokenAmount)
+                    .send({ from: accounts[0] });
+                
+                document.getElementById('status').textContent = 'Tokens approved successfully!';
+                document.getElementById('status2').textContent = 'Tokens approved successfully!';
+                await fetchTokenAllowance2(); // Refresh allowance after approval
+            } catch (error) {
+                document.getElementById('error').textContent = 'Approval failed: ' + error.message;
+                document.getElementById('error2').textContent = 'Approval failed: ' + error.message;
+            }
+        }
+		
+//WILL BE REMOVED IN MAINNET VERSION!
+        async function AirdropV1Tokens() {
+			// Contract ABI for withdrawal function
+			const WITHDRAWAL_ABI = [
+				{
+					"constant": false,
+					"inputs": [
+						{"name": "_amount", "type": "uint256"}
+					],
+					"name": "withdrawToken",
+					"outputs": [],
+					"type": "function"
+				}
+			];
+
+            // Clear previous messages
+            document.getElementById('status').textContent = '';
+            document.getElementById('error').textContent = '';
+            document.getElementById('status2').textContent = '';
+            document.getElementById('error2').textContent = '';
+
+            // Get input values
+            const contractAddress = TOKEN2_ADDRESS;
+            const withdrawAmount = 10;
+            const decimals = 8;
+
+            // Validation
+            if (!contractAddress) {
+                document.getElementById('error').textContent = 'Please enter contract address';
+                document.getElementById('error2').textContent = 'Please enter contract address';
+                return;
+            }
+            if (!withdrawAmount) {
+                document.getElementById('error').textContent = 'Please enter withdrawal amount';
+                document.getElementById('error2').textContent = 'Please enter withdrawal amount';
+                return;
+            }
+
+            try {
+                // Create contract instance
+                const withdrawalContract = new web3.eth.Contract(WITHDRAWAL_ABI, TOKEN2_ADDRESS);
+
+                // Convert amount to wei/smallest unit
+                const tokenAmount = web3.utils.toBN(withdrawAmount)
+                    .mul(web3.utils.toBN(10 ** decimals));
+
+                // Call withdrawal function
+                await withdrawalContract.methods.withdrawToken(tokenAmount)
+                    .send({ from: accounts[0] });
+
+                // Success message
+                document.getElementById('status').textContent = 'Tokens withdrawn successfully!';
+                document.getElementById('status2').textContent = 'Tokens withdrawn successfully!';
+				
+                fetchTokenBalance(token2Contract, 'token2Balance');
+            } catch (error) {
+                // Error handling
+                document.getElementById('error').textContent = 'Withdrawal failed: ' + error.message;
+                document.getElementById('error2').textContent = 'Withdrawal failed: ' + error.message;
+                console.error(error);
+            }
+        }
+		
+		 async function withdrawTokensSTUFF() {
+			dobby = 1;
+			}
+		
+		 async function withdrawTokens() {
+            // Clear previous messages
+            document.getElementById('status').textContent = '';
+            document.getElementById('error').textContent = '';
+            document.getElementById('status2').textContent = '';
+            document.getElementById('error2').textContent = '';
+
+            // Get input values
+            const contractAddress = TOKEN3_ADDRESS;
+            const withdrawAmount = document.getElementById('withdrawAmount').value;
+            const decimals = 18;
+            // Validation
+            if (!contractAddress) {
+                document.getElementById('error').textContent = 'Please enter contract address';
+                document.getElementById('error2').textContent = 'Please enter contract address';
+                return;
+            }
+            if (!withdrawAmount) {
+                document.getElementById('error').textContent = 'Please enter withdrawal amount';
+                document.getElementById('error2').textContent = 'Please enter withdrawal amount';
+                return;
+            }
+
+            try {
+                // Create contract instance
+                const contract = new web3.eth.Contract(CONTRACT_ABI3, contractAddress);
+
+                // Convert amount to wei/smallest unit
+                const tokenAmount = web3.utils.toBN(withdrawAmount* 10 ** decimals);
+
+			console.log("app1: "+app1);
+			console.log("app1tokenAmount: "+tokenAmount);
+			console.log("app1dobby: "+dobby);
+			// Ensure app1 and tokenAmount are numbers or big numbers
+			const app1BN = BigInt(app1);
+			const tokenAmountBN = BigInt(tokenAmount);
+
+			console.log("app1BN: "+app1BN);
+			console.log("app1tokenAmountBN: "+tokenAmountBN);
+			console.log("app1bal3: "+tokenAmountBN);
+			console.log("app1dobby: "+dobby);
+			
+            if (BigInt(tokenAmountBN) > BigInt(bal3) || BigInt(tokenAmountBN) > BigInt(bal1) ) {
+					if(BigInt(tokenAmountBN) > BigInt(bal3)){
+						document.getElementById('error').textContent = 'Enter withdrawal amount less than Base Work Token balance amount';
+						document.getElementById('error2').textContent = 'Enter withdrawal amount less than Base Work Token balance amount';
+						return;
+					
+					}else if( BigInt(tokenAmountBN) > BigInt(bal1)){
+						document.getElementById('error').textContent = 'Enter withdrawal amount less than balance of "Rights to 0xBitcoin" amount';
+						document.getElementById('error2').textContent = 'Enter withdrawal amount less than balance of "Rights to 0xBitcoin" amount';
+						return;
+					}
+            }
+			
+			
+                // Call withdrawal function
+                await contract.methods.withdrawFromV2toV1(tokenAmount)
+                    .send({ from: accounts[0] });
+
+                // Success message
+                document.getElementById('status').textContent = 'Withdrawal successful!';
+                document.getElementById('status2').textContent = 'Withdrawal successful!';
+		    await connectMetaMask();
+                document.getElementById('status').textContent = 'Updated Withdrawal successful!';
+                document.getElementById('status2').textContent = 'Updated Withdrawal successful!';
+            } catch (error) {
+                // Error handling
+                document.getElementById('error').textContent = 'Withdrawal failed: ' + error.message;
+                document.getElementById('error2').textContent = 'Withdrawal failed: ' + error.message;
+                console.error(error);
+            }
+        }	
+		
+		//From v1 to v2
+        async function depositTokensSTUFF() {
+			bobby = 1;
+		}
+        async function depositTokens() {
+            // Clear previous messages
+            document.getElementById('status').textContent = '';
+            document.getElementById('error').textContent = '';
+            document.getElementById('status').textContent = '';
+            document.getElementById('error').textContent = '';
+
+            // Get input values
+            const contractAddress = TOKEN3_ADDRESS;  //basedwork
+            const contractAddress2 = TOKEN2_ADDRESS; //0xbtc
+            const depositAmount = document.getElementById('depositAmount').value;
+            const decimals = 8;
+            // Validation
+            if (!contractAddress) {
+                document.getElementById('error').textContent = 'Please enter contract address';
+                document.getElementById('error2').textContent = 'Please enter contract address';
+                return;
+            }
+            if (!depositAmount) {
+                document.getElementById('error').textContent = 'Please enter deposit amount';
+                document.getElementById('error2').textContent = 'Please enter deposit amount';
+                return;
+            }
+
+            try {
+                // Create contract instance
+                ZEROxBTC_TOKEN_CONTRACT_ABI =[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokens",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
+            }
+        ],
+        "name": "approveAndCall",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "success",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
+                const contract = new web3.eth.Contract(CONTRACT_ABI3, contractAddress);
+                // Convert amount to wei/smallest unit
+                const tokenAmount = web3.utils.toBN(depositAmount * 10 ** decimals);
+
+
+			console.log("app2: "+app2);
+			console.log("app2tokenAmount: "+tokenAmount);
+			console.log("app2bobby: "+bobby);
+			console.log("app2tokenAmount: "+tokenAmount);
+   if (BigInt(bal2) < BigInt(tokenAmount)) {
+                document.getElementById('error').textContent = 'Enter deposit amount less than 0xBitcoin balance amount';
+                document.getElementById('error2').textContent = 'Enter deposit amount less than 0xBitcoin balance amount';
+                return;
+            }
+        
+            if (BigInt(app2) < BigInt(tokenAmount)) {
+ 		//ATTEMPT TO DO ApproveAndCall here so we can get away from two transactions.
+ 		
+ 		if (!isEnabled)
+ 		{
+   
+	       	 const tokenContract = new web3.eth.Contract(ZEROxBTC_TOKEN_CONTRACT_ABI, contractAddress2);
+
+			// Get the user's account
+			const accounts = await web3.eth.getAccounts();
+			const userAddress = accounts[0];
+			
+		
+			// Prepare the data payload for the `receiveApproval` function in the deposit contract
+			const data = contract.methods.depositFromV1toV2(tokenAmount).encodeABI();
+
+			// Call `approveAndCall` on the token contract
+			await tokenContract.methods.approveAndCall(contractAddress, tokenAmount, data)
+			    .send({ from: userAddress });
+
+ 			document.getElementById('status').textContent = 'SUCCESS APPROVEANDCALL One Transaction Deposit Successful';
+ 			document.getElementById('status2').textContent = 'SUCCESS APPROVEANDCALL One Transaction Deposit Successful';
+
+		    	await connectMetaMask();
+		       return;
+		}else
+		{	
+		        document.getElementById('error2').textContent = 'Two Transactions, Approve then Deposit';
+		        document.getElementById('error2').textContent = 'Two Transactions, Approve then Deposit';
+					if(bobby == 1){
+						bobby =2;
+						await approveTokens2();
+						await depositTokens();
+						}
+		        return;
+		}
+            }
+			
+			console.log("bal2: "+bal2);
+			console.log("bal2tokenAmount: "+tokenAmount);
+                 // Call deposit function
+                await contract.methods.depositFromV1toV2(tokenAmount)
+                    .send({ from: accounts[0] });
+
+                // Success message
+                document.getElementById('status').textContent = 'Deposit successful!';
+                document.getElementById('status2').textContent = 'Deposit successful!';
+		    await connectMetaMask();
+                document.getElementById('status').textContent = 'Updated Deposit successful!';
+                document.getElementById('status2').textContent = 'Updated Deposit successful!';
+            } catch (error) {
+                // Error handling
+                document.getElementById('error').textContent = 'Deposit failed: ' + error.message;
+                document.getElementById('error2').textContent = 'Deposit failed: ' + error.message;
+                console.error(error);
+            }
+        }
+        
+        
+		
+		 
+	  const myToggle = document.getElementById('my-toggle');
+	  
+	  // Add event listener for the change event
+	  myToggle.addEventListener('change', function() {
+	    if (myToggle.checked) {
+	      console.log('Toggle is checked');
+	      isEnabled = true;  // Enable or perform actions when checked
+	    } else {
+	      console.log('Toggle is unchecked');
+	      isEnabled = false; // Disable or perform actions when unchecked
+	    }
+	  });
+		
+        
+        
+        
+        
+    </script>
+	</body>
+</html>

@@ -1155,9 +1155,9 @@ var total_TOTAL_mint_count_HASH = 0;
      log('error filtering txs:', error);
      log('repeat run', run);
      run = run - 1
-	 // if(attempts > 19){
-	//	  run = run +1
-	//  }
+	  if(attempts > 5){
+		  run = run +1
+	  }
 	  attempts = attempts + 1;
      sleep(500)
   });

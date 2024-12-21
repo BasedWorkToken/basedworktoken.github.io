@@ -1,0 +1,531 @@
+<!--this page provides information that users need to mine on the forge contract-->
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://html5-templates.com/" />
+    <title>zkBitcoin Token</title>
+<meta name="description" content="zkBitcoin Token donation page. View webpage to see donation stats. Donation Address is: 0x87061fA644bbf2ce8D1A49F4e2283a84D4AA4f4A">
+	
+
+	    <!-- Open Graph meta tags for social media previews -->
+    <meta property="og:title" content="zkBitcoin Token Donation Page.">
+    <meta property="og:description" content="zkBitcoin Token Donation Page. View webpage to see donation stats. Donation Address is: 0x87061fA644bbf2ce8D1A49F4e2283a84D4AA4f4A">
+    <meta property="og:image" content="https://www.zkbitcoin.org/img/zkBitcoin.png">
+    <meta property="og:url" content="https://zkbitcoin.org/donation.html">
+    <meta property="og:type" content="website">
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/rounded-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        <style>
+        #donation-bar-container {
+            width: 33%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        #donation-bar {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0;
+        }
+        #donation-bar-text {
+            margin-left: 10px;
+            color: black;
+        } #donation-bar-container2 {
+            width: 33%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        #donation-bar2 {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0;
+        }
+        #donation-bar-text2 {
+            margin-left: 10px;
+            color: black;
+        } #donation-bar-container3 {
+            width: 33%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        #donation-bar3 {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0;
+        }
+        #donation-bar-text3 {
+            margin-left: 10px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" target="_self" aria-label="FORGE"><img alt="FORGE" src="img/forgeprofile circle-02.png" width="100px" height="110px" class="img-responsive"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right"> <li>
+                        <a href="/" style="font-size:1.1em">Home</a>
+                    </li>
+                  <li>
+                    <a href="https://syncswap.xyz/swap?outputCurrency=0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D" style="font-size:1.1em">Buy zkBTC</a>
+                </li>
+                    <li>
+                        <a href="stats.html"style="font-size:1.1em">Token Stats</a>
+                    </li>
+                    <!--an ordered list stan made me remove 3 times-->
+                   <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:1.25em">zkBTC Instructions<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="whitepaper.html"style="font-size:1.1em">Whitepaper</a>
+                            </li>
+                            <li>
+                                <a href="howtomine.html"style="font-size:1.1em">How to Mine</a>
+                            </li>
+                            <li>
+                                <a href="team.html"style="font-size:1.1em">Contact Us</a>
+                            </li>
+                        </ul>
+                    </li>
+                        </ul>
+            </div>
+            <!-- class /.navbar-collapse -->
+        </div>
+        <!-- class /.container -->
+    </nav>
+
+    <header id="myCarousel" class="carousel slide">
+    <div class="banner-container">
+  <img src="img/banner_orange.png" alt="Banner" class="banner-image">
+  <div class="icon-wrapper">
+  	<img src="img/zkBitcoin.png" alt="Icon" class="icon-overlay">
+  </div>
+</div>
+  <div class="corner-image-container"></div> <!-- Div with the new class -->
+</div>
+    </header>
+    <center>
+    <h1>Donation Wallet</h1>
+        <h1>Wallet Address: <a id="addy2" href="#" target="_blank">Loading...</a></h1>
+  <div id="qrcode" class="qrcode"></div>
+
+    <div id="donation-bar-container">
+        <div id="donation-bar"></div>
+        <div id="donation-bar-text">XeggeX Listing: 0%</div>
+    </div>    
+    <div id="donation-bar-container2">
+        <div id="donation-bar2"></div>
+        <div id="donation-bar-text2">NonKYC Listing: 0%</div>
+    </div>    
+    <div id="donation-bar-container3">
+        <div id="donation-bar3"></div>
+        <div id="donation-bar-text3">CoinMarketCap Listing: 0%</div>
+    </div>    
+
+<h1>Total $ Donated: <span id="tot$2">Loading...</span></h1>
+
+<h1> Wallet Balances </h1>
+    <p>ETH Balance: <span id="eth-balance">Loading...</span></p>
+    <p>USDT Balance: <span id="usdt-balance">Loading...</span></p>
+    <p>USDC Balance: <span id="usdc-balance">Loading...</span></p>
+    <p>USDC2 Balance: <span id="usdc-balance2">Loading...</span></p>
+    <p>zkBitcoin Token Balance: <span id="token-balance">Loading...</span></p>
+<br><h1>Wallet Balances in $</h1>
+<h3>$ value of Stable Dollars: <span id="tot-balance">Loading...</span></h3>
+<h3>$ value of zkBitcoin : <span id="usdc-eth-price-zkbtc">Loading...</span></h3>
+<h3>$ value of ETH : <span id="usdc-eth-$">Loading...</span></h3>
+<h1>Total $ Donated: <span id="tot$">Loading...</span></h1>
+<h3>Donation Address: <span id="donoAddy">Loading...</span></h3>
+
+
+</center>
+    </div>
+    </div>
+         <!-- Footer -->
+        
+    </div>
+    
+    <!-- stop it, you dont need this -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    
+        async function getBalances() {
+            const provider = new ethers.providers.JsonRpcProvider('https://mainnet.era.zksync.io'); // Using Ankr's public RPC
+
+            const address = '0x87061fA644bbf2ce8D1A49F4e2283a84D4AA4f4A';
+
+            // ETH Balance
+            const ethBalance = await provider.getBalance(address);
+            document.getElementById('eth-balance').innerText = parseFloat(ethers.utils.formatEther(ethBalance)).toFixed(5) + " ETH ";
+
+            // Token addresses (mainnet)
+            const usdtAddress = '0x493257fd37edb34451f62edf8d2a0c418852ba4c';
+            const usdcAddress = '0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4';
+            const usdcAddress2 = '0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4';
+            const customTokenAddress = '0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D';
+
+            // ERC20 ABI
+            const erc20Abi = [
+                "function balanceOf(address owner) view returns (uint256)"
+            ];
+
+            // Contract instances
+            const usdtContract = new ethers.Contract(usdtAddress, erc20Abi, provider);
+            const usdcContract = new ethers.Contract(usdcAddress, erc20Abi, provider);
+            const usdc2Contract = new ethers.Contract(usdcAddress2, erc20Abi, provider);
+            const customTokenContract = new ethers.Contract(customTokenAddress, erc20Abi, provider);
+        const addressElement = document.getElementById('addy2');
+        const explorerUrl = `https://era.zksync.network/address/${address}`;
+		document.getElementById('addy2').innerText = address; // USDT has 6 decimals
+        addressElement.href = explorerUrl;
+        	document.getElementById('donoAddy').innerText = address; // USDT has 6 decimals
+      
+        
+        
+                // Generate QR code
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: address,
+            width: 256,
+            height: 256
+        });
+        
+        
+            // USDT Balance
+            const usdtBalance = await usdtContract.balanceOf(address);
+            document.getElementById('usdt-balance').innerText = parseFloat(ethers.utils.formatUnits(usdtBalance, 6)).toFixed(2) + " $"; // USDT has 6 decimals
+
+            // USDC Balance
+            const usdcBalance = await usdcContract.balanceOf(address);
+            document.getElementById('usdc-balance').innerText = parseFloat(ethers.utils.formatUnits(usdcBalance, 6)).toFixed(2) + " $"; // USDC has 6 decimals
+
+            // USDC Balance2
+            const usdcBalance2 = await usdc2Contract.balanceOf(address);
+            document.getElementById('usdc-balance2').innerText = parseFloat(ethers.utils.formatUnits(usdcBalance2, 6)).toFixed(2) + " $"; // USDC has 6 decimals
+
+            // Custom Token Balance
+            const tokenBalance = await customTokenContract.balanceOf(address);
+            document.getElementById('token-balance').innerText = parseFloat(ethers.utils.formatUnits(tokenBalance, 18)).toFixed(2)+" zkBTC "; // Assuming 18 decimals for custom token
+            
+            const totbalz = parseFloat(ethers.utils.formatUnits(usdtBalance, 6)) + parseFloat(ethers.utils.formatUnits(usdcBalance, 6)) + parseFloat(ethers.utils.formatUnits(usdcBalance2, 6));
+            const stringz = totbalz.toFixed(2) + " $"
+            document.getElementById('tot-balance').innerText = totbalz.toFixed(2) + " $"; // Assuming 18 decimals for custom token
+    
+    
+    
+    
+                const uniswapV2PairAbi = [
+                "function getReserves() view returns (uint112 reserve0, uint112 reserve1)"
+            ];
+            
+                // USDC/ETH pair address on Uniswap V2 (mainnet)
+            const usdcEthPairAddress = '0x80115c708E12eDd42E504c1cD52Aea96C547c05c'; // Uniswap V2 USDC/ETH pair address
+
+            // Contract instance
+            const usdcEthPairContract = new ethers.Contract(usdcEthPairAddress, uniswapV2PairAbi, provider);
+
+            // Fetch reserves
+            const reserves = await usdcEthPairContract.getReserves();
+            const reserveUSDC = reserves[0];
+            const reserveETH = reserves[1];
+
+            // Calculate USDC/ETH price
+            const usdcEthPrice = reserveUSDC / reserveETH * 1e12;
+       
+        document.getElementById('eth-balance').innerText += " ("+ (parseFloat(ethers.utils.formatEther(ethBalance)) * usdcEthPrice).toFixed(2) +" $)";
+                document.getElementById('usdc-eth-$').innerText = (parseFloat(ethers.utils.formatEther(ethBalance)) * usdcEthPrice).toFixed(2) +" $";
+        
+        
+        // USDC/ETH pair address on Uniswap V2 (mainnet)
+            const zkBTCEthPairAddress = '0x7002d33C756f593AB41aF4a236005766E80dC960'; // Uniswap V2 USDC/ETH pair address
+
+            // Contract instance
+            const zkBTCEthPairContract = new ethers.Contract(zkBTCEthPairAddress, uniswapV2PairAbi, provider);
+
+            // Fetch reserves
+            const reserves3 = await zkBTCEthPairContract.getReserves();
+            const reservezkBTC = reserves3[1];
+            const reserveETH2 = reserves3[0];
+
+            // Calculate USDC/ETH price
+            const usdcEthPriceofZKBTC = reservezkBTC / reserveETH2 * usdcEthPrice * tokenBalance/1e18 ;
+            document.getElementById('usdc-eth-price-zkbtc').innerText = usdcEthPriceofZKBTC.toFixed(2) + " $";
+       
+        document.getElementById('token-balance').innerText += " ("+ (parseFloat(usdcEthPriceofZKBTC)).toFixed(2) +" $)";
+
+		const tot$Amount = parseFloat(ethers.utils.formatEther(ethBalance)) * usdcEthPrice + usdcEthPriceofZKBTC + totbalz
+        document.getElementById('tot$').innerText = parseFloat(tot$Amount).toFixed(2)+" $";
+
+
+        document.getElementById('tot$2').innerText = parseFloat(tot$Amount).toFixed(2)+" $";
+
+
+
+
+
+
+ // Define goal
+            const donationGoalInEth = 5000; // Example goal: 10 ETH
+       // Update donation bar
+            const donationPercentage = (tot$Amount / donationGoalInEth) * 100;
+            const donationBar = document.getElementById('donation-bar');
+            donationBar.style.width = donationPercentage + '%';
+            const donationBarText = document.getElementById('donation-bar-text');
+            donationBarText.innerText = `XeggeX Listing: ${donationPercentage.toFixed(2)}%`;
+        
+       
+
+ // Define goal
+            const donationGoalInEth2 = 2500; // Example goal: 10 ETH
+       // Update donation bar
+            const donationPercentage2 = (tot$Amount / donationGoalInEth2) * 100;
+            const donationBar2 = document.getElementById('donation-bar2');
+            donationBar2.style.width = donationPercentage2 + '%';
+            const donationBarText2 = document.getElementById('donation-bar-text2');
+            donationBarText2.innerText = `NonKYC Listing: ${donationPercentage2.toFixed(2)}%`;
+        
+       
+
+ // Define goal
+            const donationGoalInEth3 = 5000; // Example goal: 10 ETH
+       // Update donation bar
+            const donationPercentage3 = (tot$Amount / donationGoalInEth3) * 100;
+            const donationBar3 = document.getElementById('donation-bar3');
+            donationBar3.style.width = donationPercentage3 + '%';
+            const donationBarText3 = document.getElementById('donation-bar-text3');
+            donationBarText3.innerText = `CoinMarketCap Listing: ${donationPercentage3.toFixed(2)}%`;
+        
+       
+        }
+
+        getBalances();    
+    </script>
+
+  
+  <footer id="footer.dark taz"> 
+          <div class="container">
+            <div class="row" >
+                <div class="col-sm-6 col-md-3 item">
+                     <h5>Add Token to MetaMask</h5>
+                            
+				<div style="width: 100%; display: inline-block;">
+    <button type="button" class="zenableEthereumButton22 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Add zkBitcoin Tokens</button><br>
+</div>
+                                   <script>
+                                    let accounts = [];
+                                    //Sending Ethereum to an address
+                                    //
+                                    const ethereumButton22ff = document.querySelector('.zenableEthereumButton22');
+                                    
+                                    ethereumButton22ff.addEventListener('click', () => {
+                                      getAccount22ff();
+                               
+                                   
+                                    });
+                                    
+                                    
+                                    async function getAccount() {
+                                      accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                      showAccount.innerHTML = accounts;
+                                     console.log(accounts);
+                                    }
+                                        
+                                    
+                                    async function getAccount22ff() {
+                                            
+                                       try {
+                                              await ethereum.request({
+                                                method: 'wallet_switchEthereumChain',
+                                                params: [{ chainId: '0x144' }],
+                                              });
+                                            } catch (switchError) {
+                                              // This error code indicates that the chain has not been added to MetaMask.
+                                              if (switchError.code === 4902) {
+                                                try {
+                                                  await ethereum.request({
+                                                    method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x144', 
+                                                    chainName: 'zkSync Era',
+                                                    nativeCurrency: {
+                                                        name: 'Ethereum',
+                                                        symbol: 'ETH', // 2-6 characters long
+                                                        decimals: 18
+                                                    },
+                                                    blockExplorerUrls: ['https://explorer.zksync.io/'],
+                                                    rpcUrls: ['https://mainnet.era.zksync.io'] }],
+                                                  });
+                                                } catch (addError) {
+                                                  // handle "add" error
+                                                }
+                                              }
+                                              // handle other "switch" errors
+                                            }		
+                                                    
+                                            await new Promise(r => setTimeout(r, 20));
+                                            accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                            const tokenAddress2 = '0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D';
+                                            const tokenSymbol2 = 'zkBTC';
+                                            const tokenDecimals2 = 18;
+                                            const tokenImage2 = 'https://zkbitcoin.org/img/zkBitcoin.png';
+        
+                                                        
+                                                                                               
+                                            
+                                            try {
+                                              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+                                              const wasAdded = await ethereum.request({
+                                                method: 'wallet_watchAsset',
+                                                params: {
+                                                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                                                  options: {
+                                                    address: tokenAddress2, // The address that the token is at.
+                                                    symbol: tokenSymbol2, // A ticker symbol or shorthand, up to 5 chars.
+                                                    decimals: tokenDecimals2,  // The number of decimals in the token
+                                                    image: tokenImage2, // A string url of the token logo
+        
+                                                  },
+                                                },
+                                              });
+
+                                              if (wasAdded) {
+                                        console.log('Thanks for your interest!');
+                                      } else {
+                                        console.log('Your loss!');
+                                      }
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                        }
+                                    </script>
+
+
+<!--
+           	
+                                   <button type="button" class="zenableEthereumButton222 btn btn-hover color-1 glowing addedstylebutton">Add Test 0xBTC Tokens</button>
+                                     <br>
+
+                                   <button type="button" class="zenableEthereumButton2222 btn btn-hover color-1 glowing addedstylebutton">Add Test 0xBTC / zkBTC LP Tokens</button>     
+                                    <br>
+                                   <button type="button" class="zenableEthereumButtonabcDF btn btn-hover color-1 glowing addedstylebutton">Add Test ETH / zkBTC LP Tokens</button>     
+-->
+                                  
+
+                                    
+
+			</ul></div>
+                        
+                        </li>
+                    </ul>
+                
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="https://zkbitcoin.org/howtomine.html">How to Mine</a></li>
+                        <li><a href="https://zkbitcoin.org/whitepaper.html">Whitepaper</a></li>
+                        <li><a href="https://zkbitcoin.org/team.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="width: 100%; text-align: left; margin-bottom: 20px;">
+        <h3>zkBitcoin</h3>
+        <h5>A new way to DEFI. Mine it yourself with your GPU/FPGA/ASIC miner!! All decentralized!!</h5>
+    </div>
+    <div style="width: 100%; text-align: left; margin-bottom: 5px;">
+        <a href="https://t.me/zkBitcoinToken" aria-label="Telegram">
+            <i class="fa fa-telegram zeropadding"></i>
+  </a>
+        <a href="https://twitter.com/zkBitcoinToken/" aria-label="Twitter">
+            <i class="fa fa-twitter zeropadding"></i>
+        </a>
+        <a href="https://medium.com/@zkBitcoinToken/" aria-label="Medium">
+            <i class="fa fa-medium zeropadding"></i>
+        </a>
+        <a href="https://github.com/ZKBitcoinToken" aria-label="Github">
+            <i class="fa fa-github zeropadding"></i>
+        </a>
+        <a href="https://discord.gg/dNKbmFvvJU" aria-label="Discord">
+            <i class="">Join Our Discord</i>
+        </a>
+    </div>
+</div>
+<footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
