@@ -90,9 +90,6 @@
     <header id="myCarousel" class="carousel slide">
     <div class="banner-container">
   <img src="img/banner_orange.png" alt="Banner" class="banner-image">
-  <div class="icon-wrapper">
-  	<img src="img/zkBitcoin.png" alt="Icon" class="icon-overlay">
-  </div>
 </div>
   <div class="corner-image-container"></div> <!-- Div with the new class -->
 </div>
@@ -112,12 +109,12 @@
       <!--  <h4 style="text-align: left;">GPU Mining - Pool Mode</h4>
         <pre>
 This Guide is for GPU miners on Windows computers -->
-  <pre>First  you need Testnet Mock 0xBitcoin.  You can get testnet Mock 0xBitcoin for converting by visiting the dAPP with a connected wallet and go to the bottom and click the button "Receive 10 0xBTC v1 Tokens"
+  <pre>First  you need Testnet Mock 0xBitcoin.  You can get testnet Mock 0xBitcoin for convertering by visiting the dAPP with a connected wallet and go to the bottom and click the button "Recieve 10 0xBTC v1 Tokens"
   
-<a href="https://basedworktoken.org/img/Testnet0xBTCWithdrawl_example.png"><b>Example to Receive Testnet 0xBitcoin</b></a>
+<a href="https://basedworktoken.org/img/Testnet0xBTCWithdrawl_example.png"><b>Example to Recieve Testnet 0xBitcoin</b></a>
 
 Now to convert to the new Base Work Token you simply input the number of 0xBitcoin you want to convert and click the button "Deposit"
-It will have two transactions the first time an Approve and a "Deposit from 0xBitcoin to BWORK" transaction.
+It will have two transactions the first time an Approve and a "Deposit V1 to V2" transaction.
 
 <a href="https://basedworktoken.org/img/Testnet0xBTCDeposit_example.png"><b>Example How to Deposit Testnet 0xBitcoin</b></a>
 
@@ -125,7 +122,7 @@ Voila you now own RightsTo0xBitcoin Tokens and Base Work Tokens.  See the next s
 
 </pre>
 </pre>
-  <h2 style="text-align: center;">How Do I Convert Based Work Tokens to 0xBitcoin Tokens?</h2>
+  <h2 style="text-align: center;">How Do I Convert 0xBitcoin to Based Work Token?</h2>
         <h4 style="text-align: left;">Requirements</h4>
 <pre>
 Equal Amounts of RightsTo0xBitcoin Tokens and Base Work Tokens
@@ -161,15 +158,161 @@ Voila you now own Testnet 0xBitcoin Tokens.
     })
     </script>
 
-  <footer id="footer.dark taz"> 
-          <div class="container">
-            <div class="row" >
-                <div class="col-sm-6 col-md-3 item">
-                     <h5>Add Token to MetaMask</h5>
-                            
-				<div style="width: 100%; display: inline-block;">
-    <button type="button" class="zenableEthereumButton22 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Add Based Work Tokens</button><br>
-</div>
+
+
+
+
+  <style>
+/* Footer base styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+/* Column styles */
+.footer-col {
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.footer-col-metamask {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.footer-col-about {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.footer-col-info {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+/* Content styles */
+.footer-col h3,
+.footer-col h5 {
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: white;
+    text-decoration: none;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.social-links .fa {
+    margin-right: 5px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 991px) {
+    .footer-col-metamask,
+    .footer-col-about {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .footer-col-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-col-metamask,
+    .footer-col-about,
+    .footer-col-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+</style>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-row">
+            <!-- MetaMask Column -->
+            <div class="footer-col footer-col-metamask">
+                <h5>Add Token to MetaMask</h5>
+                <div>
+                    <button type="button" class="zenableEthereumButton22 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        Add Based Work Tokens
+                    </button>
+                </div>
+            </div>
+
+            <!-- About Column -->
+            <div class="footer-col footer-col-about">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="https://basedworktoken.org/howtomine.html">How to Mine</a></li>
+                    <li><a href="https://basedworktoken.org/whitepaper.html">Whitepaper</a></li>
+                    <li><a href="https://basedworktoken.org/team.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Info Column -->
+            <div class="footer-col footer-col-info">
+                <div>
+                    <h3>Based Work Token (BWORK)</h3>
+                    <h5>A new way to DEFI. Mine it yourself with your CPU/GPU/FPGA/ASIC miner!! All decentralized!!</h5>
+                </div>
+                <div class="social-links">
+                    <a href="https://t.me/basedworktoken" aria-label="Telegram">
+                        <i class="fa fa-telegram"></i>
+                    </a>
+                    <a href="https://twitter.com/basedworktoken/" aria-label="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://medium.com/@basedworktoken/" aria-label="Medium">
+                        <i class="fa fa-medium"></i>
+                    </a>
+                    <a href="https://github.com/basedworktoken" aria-label="Github">
+                        <i class="fa fa-github"></i>
+                    </a>
+                    <a href="https://discord.gg/QrGNf47ATk" aria-label="Discord">
+                        <span>Join Our Discord</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
                                    <script>
                                     let accounts = [];
                                     //Sending Ethereum to an address
@@ -261,57 +404,7 @@ Voila you now own Testnet 0xBitcoin Tokens.
                                     </script>
 
 
-<!--
-           	
-                                   <button type="button" class="zenableEthereumButton222 btn btn-hover color-1 glowing addedstylebutton">Add Test 0xBTC Tokens</button>
-                                     <br>
 
-                                   <button type="button" class="zenableEthereumButton2222 btn btn-hover color-1 glowing addedstylebutton">Add Test 0xBTC / zkBTC LP Tokens</button>     
-                                    <br>
-                                   <button type="button" class="zenableEthereumButtonabcDF btn btn-hover color-1 glowing addedstylebutton">Add Test ETH / zkBTC LP Tokens</button>     
--->
-                                  
-
-                                    
-
-			</ul></div>
-                        
-                        </li>
-                    </ul>
-                
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>About</h3>
-                    <ul>
-                        <li><a href="https://basedworktoken.org/howtomine.html">How to Mine</a></li>
-                        <li><a href="https://basedworktoken.org/whitepaper.html">Whitepaper</a></li>
-                        <li><a href="https://basedworktoken.org/team.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div style="display: flex; flex-direction: column; align-items: center;">
-    <div style="width: 100%; text-align: left; margin-bottom: 20px;">
-        <h3>Based Work Token (BWORK)</h3>
-        <h5>A new way to DEFI. Mine it yourself with your CPU/GPU/FPGA/ASIC miner!! All decentralized!!</h5>
-    </div>
-    <div style="width: 100%; text-align: left; margin-bottom: 5px;">
-        <a href="https://t.me/basedworktoken" aria-label="Telegram">
-            <i class="fa fa-telegram zeropadding"></i>
-        </a>
-        <a href="https://twitter.com/basedworktoken/" aria-label="Twitter">
-            <i class="fa fa-twitter zeropadding"></i>
-        </a>
-        <a href="https://medium.com/@basedworktoken/" aria-label="Medium">
-            <i class="fa fa-medium zeropadding"></i>
-        </a>
-        <a href="https://github.com/basedworktoken" aria-label="Github">
-            <i class="fa fa-github zeropadding"></i>
-        </a>
-        <a href="https://discord.gg/QrGNf47ATk" aria-label="Discord">
-            <i class="">Join Our Discord</i>
-        </a>
-    </div>
-</div>
-<footer>
 </body>
 
 </html>

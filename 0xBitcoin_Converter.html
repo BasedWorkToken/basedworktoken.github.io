@@ -1,8 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://html5-templates.com/" />
     <title>0xBitcoin <-> Base Work Token (BWORK) Converter</title>
+    <meta name="description" content="Based Work Token Converter for 0xBitcoin.  Join our Discord or view our website for more information.">
+
+
+	    <!-- Open Graph meta tags for social media previews -->
+    <meta property="og:title" content="Based Work Token">
+    <meta property="og:description" content="Based Work Token Converter for 0xBitcoin.  Join our Discord or view our website for more information.">
+    <meta property="og:image" content="https://basedworktoken.github.io/img/zkBitcoin.png">
+    <meta property="og:url" content="https://basedworktoken.github.io/">
+    <meta property="og:type" content="website">
+
+
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/rounded-icons.css" rel="stylesheet">
+    <link href="css/arrow.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-217288124-1"></script>
+    <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.10.0/web3.min.js"></script>
     <style>
 	     body { 
@@ -53,12 +80,7 @@
             color: red;
             margin-top: 10px;
         }
-		.container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+		
 		 .function-section {
             margin-bottom: 20px;
             padding: 15px;
@@ -137,6 +159,69 @@
     </style>
 </head>
 <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" target="_self" aria-label="FORGE"><img alt="BWORK" src="img/forgeprofile circle-02.png" width="100px" height="110px" class="img-responsive"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right"> <li>
+                        <a href="/" style="font-size:1.1em">Home</a>
+                    </li>
+                  <li>
+                    <a href="https://syncswap.xyz/swap?outputCurrency=0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D" style="font-size:1.1em">Buy Based Work</a>
+                </li>
+                    <li>
+                        <a href="stats.html"style="font-size:1.1em">Token Stats</a>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:1.25em">BWORK dAPPs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+				    <li>
+				        <a href="0xBitcoin_Converter.html" style="font-size:1.1em">0xBitcoin Converter dAPP</a>
+				    </li>
+                        </ul>
+                    </li>  
+                    <!--an ordered list stan made me remove 3 times-->
+                   <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:1.25em">BWORK Instructions<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="whitepaper.html"style="font-size:1.1em">Whitepaper</a>
+                            </li>
+
+                            <li>
+                                <a href="howtoconvert.html"style="font-size:1.1em">How to Convert 0xBitcoin to BWORK</a>
+                            </li>
+                            <li>
+                                <a href="howtomine.html"style="font-size:1.1em">How to Mine</a>
+                            </li>
+                            <li>
+                                <a href="team.html"style="font-size:1.1em">Contact Us</a>
+                            </li>
+                        </ul>
+                    </li>
+                        </ul>
+            </div>
+            <!-- class /.navbar-collapse -->
+        </div>
+        <!-- class /.container -->
+    </nav>
+    
+
     <h1>0xBitcoin Token Converter</h1>
     
     <button id="connectButton">Connect MetaMask</button>
@@ -230,9 +315,167 @@
         </div>
     </div>
 		 <button id="doNothingImportantButton" style="display:none;" >Show Call Approve Functions</button>
+	</body>
+  
+  <style>
+/* Footer base styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    width: 100%;
+}
 
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+/* Column styles */
+.footer-col {
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.footer-col-metamask {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.footer-col-about {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.footer-col-info {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+/* Content styles */
+.footer-col h3,
+.footer-col h5 {
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: white;
+    text-decoration: none;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.social-links .fa {
+    margin-right: 5px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 991px) {
+    .footer-col-metamask,
+    .footer-col-about {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .footer-col-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-col-metamask,
+    .footer-col-about,
+    .footer-col-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+</style>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-row">
+            <!-- MetaMask Column -->
+            <div class="footer-col footer-col-metamask">
+                <h5>Add Token to MetaMask</h5>
+                <div>
+                    <button type="button" class="zenableEthereumButton22 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        Add Based Work Tokens
+                    </button>
+                </div>
+            </div>
+
+            <!-- About Column -->
+            <div class="footer-col footer-col-about">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="https://basedworktoken.org/howtomine.html">How to Mine</a></li>
+                    <li><a href="https://basedworktoken.org/whitepaper.html">Whitepaper</a></li>
+                    <li><a href="https://basedworktoken.org/team.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Info Column -->
+            <div class="footer-col footer-col-info">
+                <div>
+                    <h3>Based Work Token (BWORK)</h3>
+                    <h5>A new way to DEFI. Mine it yourself with your CPU/GPU/FPGA/ASIC miner!! All decentralized!!</h5>
+                </div>
+                <div class="social-links">
+                    <a href="https://t.me/basedworktoken" aria-label="Telegram">
+                        <i class="fa fa-telegram"></i>
+                    </a>
+                    <a href="https://twitter.com/basedworktoken/" aria-label="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://medium.com/@basedworktoken/" aria-label="Medium">
+                        <i class="fa fa-medium"></i>
+                    </a>
+                    <a href="https://github.com/basedworktoken" aria-label="Github">
+                        <i class="fa fa-github"></i>
+                    </a>
+                    <a href="https://discord.gg/QrGNf47ATk" aria-label="Discord">
+                        <span>Join Our Discord</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
     <script>
     
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
     
         // Token Contract ABIs and Addresses (replace with your actual contracts)
         const TOKEN1_ADDRESS = '0xb9d1fFDA9F44bD57191145297d2FEaEf097De4dd'; // RightsTo0xBitcoin Token (R0xBTC)
@@ -827,6 +1070,100 @@
         
         
         
+                                    //Sending Ethereum to an address
+                                    //
+                                    const ethereumButton22ff = document.querySelector('.zenableEthereumButton22');
+                                    
+                                    ethereumButton22ff.addEventListener('click', () => {
+                                      getAccount22ff();
+                               
+                                   
+                                    });
+                                    
+                                    
+                                        
+                                    
+                                    async function getAccount22ff() {
+                                            
+                                                                
+                                          try {
+                                              await ethereum.request({
+                                                method: 'wallet_switchEthereumChain',
+                                                params: [{ chainId: '0x14a34' }],
+                                              });
+                                            } catch (switchError) {
+                                              // This error code indicates that the chain has not been added to MetaMask.
+                                              if (switchError.code === 4902) {
+                                                try {
+                                                  await ethereum.request({
+                                                    method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x14a34', 
+                                                    chainName: 'Base Sepolia Testnet',
+                                                    nativeCurrency: {
+                                                        name: 'Ethereum',
+                                                        symbol: 'ETH', // 2-6 characters long
+                                                        decimals: 18
+                                                    },
+                                                    blockExplorerUrls: ['https://sepolia.basescan.org'],
+                                                    rpcUrls: ['https://sepolia.base.org'] }],
+                                                  });
+                                                } catch (addError) {
+                                                  // handle "add" error
+                                                }
+                                              }
+                                              // handle other "switch" errors
+                                            }		
+                                                    
+                                            await new Promise(r => setTimeout(r, 20));
+                                            accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                            const tokenAddress2 = '0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f';
+                                            const tokenSymbol2 = 'BWORK';
+                                            const tokenDecimals2 = 18;
+                                            const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
+        
+                                        
+                                               
+                                                        
+                                                                                               
+                                            
+                                            try {
+                                              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+                                              const wasAdded = await ethereum.request({
+                                                method: 'wallet_watchAsset',
+                                                params: {
+                                                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                                                  options: {
+                                                    address: tokenAddress2, // The address that the token is at.
+                                                    symbol: tokenSymbol2, // A ticker symbol or shorthand, up to 5 chars.
+                                                    decimals: tokenDecimals2,  // The number of decimals in the token
+                                                    image: tokenImage2, // A string url of the token logo
+        
+                                                  },
+                                                },
+                                              });
+
+                                              if (wasAdded) {
+                                        console.log('Thanks for your interest!');
+                                      } else {
+                                        console.log('Your loss!');
+                                      }
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                        }
+                                        
+                                        
+        
+        
+        
     </script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
 	</body>
 </html>
