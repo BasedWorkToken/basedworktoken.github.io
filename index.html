@@ -46,6 +46,11 @@
 
 
  <style>
+body{
+  background: url(https://testnet.basedworktoken.org/img/abstract-2829961.png);
+    background-repeat: no-repeat;
+background-attachment: fixed;
+    background-size: 100% 100vh;}
        
            #countdown {
             font-size: 7.5rem;
@@ -94,7 +99,7 @@
                         <a href="/" style="font-size:1.1em">Home</a>
                     </li>
                   <li>
-                    <a href="https://syncswap.xyz/swap?outputCurrency=0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D" style="font-size:1.1em">Buy Based Work</a>
+                    <a href="https://swap.defillama.com/?chain=base&from=0x0000000000000000000000000000000000000000&tab=swap&to=0x677F124CD209489F6621eebDFdA1E32c625214d4" style="font-size:1.1em">Buy Based Work</a>
                 </li>
                     <li>
                         <a href="stats.html"style="font-size:1.1em">Token Stats</a>
@@ -135,65 +140,118 @@
         </div>
         <!-- class /.container -->
     </nav>
-    
+       
+    <!--The Headers Carousel -->
     <header id="myCarousel" class="carousel slide">
-    <div class="banner-container">
-  <img src="img/banner_orange.png" alt="Banner" class="banner-image">
- </div><br></br>
+        <!-- Indicators for switching slides -->
+        <!-- <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>     
+        </ol> -->
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill addedclass1"></div>
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item next">
+                <div class="fill addedclass2"></div>
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item next">
+              <div class="fill addedclass3"></div>
+              <div class="carousel-caption">
+              </div>
+          </div>
+            <!--Class is editable in modern-business.css-->
+            </div>
+        </div>
+        <!-- Controls for carousel, can be edited in modern-business.css-->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev" aria-label="FORGE Carousel">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next" aria-label="FORGE Carousel">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+   
+
+
  <h1><center>Countdown to Mainnet Mining Launch</center></h1>
- 
- <div id="countdown">
-        <div class="time-unit">
-            <span id="days">00</span>Days
-        </div>
-        <div class="time-unit">
-            <span id="hours">00</span>Hours
-        </div>
-        <div class="time-unit">
-            <span id="minutes">00</span>Minutes
-        </div>
-        <div class="time-unit">
-            <span id="seconds">00</span>Seconds
-        </div>
-    </div>
+		<h3><center>Feb. 5th 4pm GMT/UTC</center></h3>
+<div id="countdown">
+    <div class="time-unit" id="days-container" style="display: inline;">
+    <span id="days">00</span> Days
+</div>
+<div class="time-unit" id="hours-container" style="display: inline;">
+    <span id="hours">00</span> Hours
+</div>
+<div class="time-unit" id="minutes-container" style="display: inline;">
+    <span id="minutes">00</span> Minutes
+</div>
+<div class="time-unit" id="seconds-container" style="display: inline;">
+    <span id="seconds">00</span> Seconds
+</div>
+</div>
 
+<script>
+    // Function to format time units
+    function formatTimeUnit(unit) {
+        return unit < 10 ? `0${unit}` : `${unit}`;
+    }
 
+    // Function to update the countdown
+    function updateCountdown(targetEpoch) {
+        const currentTime = Math.floor(Date.now()); // Current time in seconds
+        const timeDifference = targetEpoch*1000 - currentTime;
 
-
-    <script>
-        // Function to format time units
-        function formatTimeUnit(unit) {
-            return unit < 10 ? `0${unit}` : `${unit}`;
+        if (timeDifference <= 0) {
+            document.getElementById('countdown').innerHTML = "Countdown Complete!";
+            clearInterval(interval);
+            return;
         }
 
-        // Function to update the countdown
-        function updateCountdown(targetEpoch) {
-            const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-            const timeDifference = targetEpoch - currentTime;
+        // Calculate time units
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-            if (timeDifference <= 0) {
-                document.getElementById('countdown').innerHTML = "Countdown Complete!";
-                clearInterval(interval);
-                return;
-            }
-
-            const days = Math.floor(timeDifference / (60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (60 * 60 * 24)) / (60 * 60));
-            const minutes = Math.floor((timeDifference % (60 * 60)) / 60);
-            const seconds = timeDifference % 60;
-
+        // Display logic based on remaining time
+        if (days > 0) {
+            document.getElementById('days-container').style.display = "inline";
+            document.getElementById('hours-container').style.display = "inline";
+            document.getElementById('minutes-container').style.display = "none";
+            document.getElementById('seconds-container').style.display = "none";
+            document.getElementById('hours').textContent = formatTimeUnit(hours);
             document.getElementById('days').textContent = formatTimeUnit(days);
+        } else if (hours > 0) {
+            document.getElementById('days-container').style.display = "none";
+            document.getElementById('hours-container').style.display = "inline";
+            document.getElementById('minutes-container').style.display = "inline";
+            document.getElementById('seconds-container').style.display = "inline";
             document.getElementById('hours').textContent = formatTimeUnit(hours);
             document.getElementById('minutes').textContent = formatTimeUnit(minutes);
             document.getElementById('seconds').textContent = formatTimeUnit(seconds);
+        } else {
+            document.getElementById('days-container').style.display = "none";
+            document.getElementById('hours-container').style.display = "none";
+            document.getElementById('minutes-container').style.display = "inline";
+            document.getElementById('seconds-container').style.display = "inline";
+            document.getElementById('minutes').textContent = formatTimeUnit(minutes);
+            document.getElementById('seconds').textContent = formatTimeUnit(seconds);
         }
+    }
 
-        // Set your target epoch time here (in seconds)
-        const targetEpoch = 1738771200; // Replace with your epoch time
+    // Set your target epoch time here (in seconds)
+    const targetEpoch = 1738771200; // Replace with your epoch time
 
-        // Start the countdown
-        const interval = setInterval(() => updateCountdown(targetEpoch), 1000);
-    </script>
+    // Start the countdown
+    const interval = setInterval(() => updateCountdown(targetEpoch), 1000);
+</script>
+
 
     </header>
     <!-- Page Content -->
@@ -205,16 +263,16 @@
                 </h1> -->
             </div>
             <!-- This is where users can view our tokenomics on the index page-->   
-</center> 
+ 
     <div id="notice">
-        Testnet Website<br>All Links Are for TESTNET ONLY
+        Mainnet Website<br>All Links are live!
 	<!-- <a href="https://basedworktoken.org"">Go to Mainnet website</a> -->
     </div>
                
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><img alt="forge" src="./img/IconForge.png" width="50" height="50" style="margin-right: 1%;">Testnet Based Work Token Information</h4><h6>Testnet Token Contract: 0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f</h6>
+                        <h2><img alt="forge" src="./img/IconForge.png" width="50" height="50" style="margin-right: 1%;">Based Work Token Information</h2><h3>Token Contract: 0x677F124CD209489F6621eebDFdA1E32c625214d4</h3>
                         
                     </div>
 
@@ -237,7 +295,7 @@ Our mission: Keep the core principles of blockchain's original vision alive, whi
 
                 
                         <a href="whitepaper.html" class="btn btn-default btnsex">WhitePaper</a>
-			<a href="https://sepolia.basescan.org/token/0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f" class="btn btn-default btnsex2">TESTNET Based Work Token Contract</a>
+			<a href="https://basescan.org/address/0x2f38B1a516239739CdCD2C228D1Eb96E29800975#tokentxns" class="btn btn-default btnsex2">Based Work Mining Contract</a>
                       
                     </div>
                 </div>
@@ -245,7 +303,7 @@ Our mission: Keep the core principles of blockchain's original vision alive, whi
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-btc"></i> Based Work Tokenomics <a href="https://syncswap.xyz/swap?outputCurrency=0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D" class="btn btn-default btnsex3 contractbtn">Buy Based Work Token</a></h4>
+                        <h2><i class="fa fa-fw fa-btc"></i> Based Work Tokenomics <a href="https://swap.defillama.com/?chain=base&from=0x0000000000000000000000000000000000000000&tab=swap&to=0x677F124CD209489F6621eebDFdA1E32c625214d4" class="btn btn-default btnsex3 contractbtn">Buy Based Work Token</a></h2>
                     </div>
                     <div class="panel-body">
                         <!-- This is for auction information-->
@@ -254,7 +312,7 @@ Our mission: Keep the core principles of blockchain's original vision alive, whi
            
 <pre>10,835,900 (51.5%) Based Work Tokens are allocated to be allocated to the original 0xBitcoin holders</pre>
 <pre>10,164,100 (48.5%) Based Work Tokens distributed via Proof of Work Contract(Mining) </pre>
-                        <a href="stats.html" class="btn btn-default btnsex">TESTNET Base Work Token Live Statistics Site</a>                      
+                        <a href="stats.html" class="btn btn-default btnsex">Base Work Token Live Statistics Site</a>                      
 
                     </div>
                 </div>
@@ -262,8 +320,7 @@ Our mission: Keep the core principles of blockchain's original vision alive, whi
             <div class="md-4">
               <div class="panel panel-default">
                   <div class="panel-heading">
-                      <h4><i class="fa fa-fw fa-money"></i>TESTNET Proof of Work Contract 
-</h4>
+                      <h2><i class="fa fa-fw fa-money"></i>Proof of Work Contract </h2>
                   </div>
                   <div class="panel-body">
 
@@ -283,7 +340,7 @@ Change this setting in your BaseWorkToken.conf file by changing the "MinBWORKper
 
                       <!--Download is located here, already rigged to the button for instant download-->
                       <!-- <a href="http://abastoken.org:81" class="btn btn-default btnsex1">Check the Mining Pool</a> -->
-                      <a href="https://sepolia.basescan.org/address/0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f" class="btn btn-default btnsex2">TESTNET Proof of Work Contract link</a>
+                      <a href="https://basescan.org/address/0x2f38B1a516239739CdCD2C228D1Eb96E29800975#tokentxns" class="btn btn-default btnsex2">Proof of Work Contract link</a>
                       <a href="howtomine.html" class="btn btn-default btnsex4">How to Mine</a>
                       <a href="https://github.com/BasedWorkToken/BWORK-Testnet-Windows-Miner" class="btn btnsex5">Download TESTNET Windows CPU & GPU Miner Here</a>
                       <a href="https://github.com/BasedWorkToken/Miner-Testnet-Ubuntu-16-18-20" class="btn btnsex5">Download TESTNET Ubuntu 16,18,20 CPU & GPU Miner Here</a>
@@ -298,8 +355,8 @@ Change this setting in your BaseWorkToken.conf file by changing the "MinBWORKper
             <div class="md-4">
               <div class="panel panel-default">
                   <div class="panel-heading">
-                      <h4><i class="fa fa-fw fa-money"></i>TESTNET 0xBitcoin Conversion / Allocatioin
-</h4>
+                      <h2><i class="fa fa-fw fa-money"></i>0xBitcoin Conversion / Allocatioin
+</h2>
                   </div>
                   <div class="panel-body">
 
@@ -320,12 +377,12 @@ Rights to 0xBitcoin is a seperate token that allows us to have a conversion both
 
                       <!--Download is located here, already rigged to the button for instant download-->
                       <!-- <a href="http://abastoken.org:81" class="btn btn-default btnsex1">Check the Mining Pool</a> --> 
-                             <a href="0xBitcoin_Converter.html" class="btn btn-default btnsex4">Testnet Converter dAPP Website</a>
+                             <a href="0xBitcoin_Converter.html" class="btn btn-default btnsex4">Converter dAPP Website</a>
                              
                       <a href="howtoconvert.html" class="btn btn-default btnsex4">How to Convert 0xBitcoins</a>
              
-                      <a href="https://sepolia.basescan.org/token/0x13AC73f187822db758B9c1f6ADda08A15640794F" class="btn btn-default btnsex2">Testnet RightsTo0xBitcoin Token Link</a>
-                      <a href="https://sepolia.basescan.org/token/0xb9d1fFDA9F44bD57191145297d2FEaEf097De4dd" class="btn btn-default btnsex3">Testnet 0xBitcoin Token Link</a>
+                      <a href="https://etherscan.io/token/0xc328597Ac483478f824A806163559ddccb46Eb0F" class="btn btn-default btnsex21">RightsTo0xBitcoin Token Link</a>
+                      <a href="https://etherscan.io/token/0xB6eD7644C69416d67B522e20bC294A9a9B405B31" class="btn btn-default btnsex33">0xBitcoin Token Link</a>
                      <!-- <a href="https://drive.google.com/u/3/uc?id=1bqd-IsWmDUhJEPFiCBx4Cab-WfS8I2vU&export=download" class="btn btnsex5">Download GPU Miner Here</a>
                       -->
                   </div>
@@ -351,16 +408,15 @@ Rights to 0xBitcoin is a seperate token that allows us to have a conversion both
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                            <h4><img alt="forge" src="./img/imgzz.png" width="50" height="50" style="margin-right: 1%;"> Add TESTNET Tokens to Metamask 
-</h4>
-                    </div><pre>Adds TESTNET Base Work Tokens, TESTNET 0xBitcoin, and TESTNET RightsTo0xBitcoin to a users Metamask 
-On the Base Sepolia TESTNET Blockchain Network (Chain ID: 84532)
+                            <h2><img alt="forge" src="./img/imgzz.png" width="50" height="50" style="margin-right: 1%;"> Add Mainnet Tokens to Metamask </h2>
+                    </div><pre>Adds Base Work Tokens, 0xBitcoin, and RightsTo0xBitcoin to a users Metamask 
+On the Ethereum Blockchain Network (Chain ID: 8453)
 By clicking buttons below in a browser with Metamask installed</pre>
                     <div class="panel-body">
-<button type="button" class="a2zenableEthereumButton52221 btn btn-default btnsex4">Add TESTNET Base Work Tokens to Metamask</button>
+<button type="button" class="a2zenableEthereumButton52221 btn btn-default btnsex">Add Base Work Tokens to Metamask</button>
 
-                      <button type="button" class="azenableEthereumButton52221 btn btn-default btnsex2">Add TESTNET RightsTo0xBitcoin Tokens to Metamask</button>
-                <button type="button" class="azenableEthereumButton32221 btn btn-default btnsex3">Add Test 0xBitcoin Tokens to Metamask</button>
+                      <button type="button" class="azenableEthereumButton52221 btn btn-default btnsex21">Add RightsTo0xBitcoin Tokens to Metamask</button>
+                <button type="button" class="azenableEthereumButton32221 btn btn-default btnsex33">Add 0xBitcoin Tokens to Metamask</button>
              <!--        <button type="button" class="azenableEthereumButton222 btn btn-default btnsex1">Add Test 0xBitcoin Tokens</button>
 -->
                     </div>
@@ -918,23 +974,23 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                           try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x14a34' }],
+                                                params: [{ chainId: '0x1' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
                                               if (switchError.code === 4902) {
-                                                try {
+                                               try {
                                                   await ethereum.request({
                                                     method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x14a34', 
-                                                      chainName: 'Base Sepolia Testnet',
-                                                      nativeCurrency: {
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
+                                                    nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
-                                                    },
-                                                      blockExplorerUrls: ['https://sepolia.basescan.org'],
-                                                    rpcUrls: ['https://sepolia.base.org'] }],
+                                                },
+		                            		rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
                                                   });
                                                 } catch (addError) {
                                                   // handle "add" error
@@ -945,7 +1001,7 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0xb9d1fFDA9F44bD57191145297d2FEaEf097De4dd';
+                                            const tokenAddress2 = '0xc328597Ac483478f824A806163559ddccb46Eb0F';
                                             const tokenSymbol2 = 'R0xBTC';
                                             const tokenDecimals2 = 18;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/RightsTo0xBitcoin.png';
@@ -1011,23 +1067,23 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                           try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x14a34' }],
+                                                params: [{ chainId: '0x1' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
                                               if (switchError.code === 4902) {
                                                 try {
                                                   await ethereum.request({
-                                                    method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x14a34', 
-                                                    chainName: 'Base Sepolia Testnet',
+                                                      method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
                                                     nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
-                                                    },
-                                                    blockExplorerUrls: ['https://sepolia.basescan.org'],
-                                                    rpcUrls: ['https://sepolia.base.org'] }],
+                                                },
+		                            		rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
                                                   });
                                                 } catch (addError) {
                                                   // handle "add" error
@@ -1038,7 +1094,7 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f';
+                                            const tokenAddress2 = '0x2f38B1a516239739CdCD2C228D1Eb96E29800975';
                                             const tokenSymbol2 = 'BWORK';
                                             const tokenDecimals2 = 18;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
@@ -1112,7 +1168,7 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                           try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x14a34' }],
+                                                params: [{ chainId: '0x1' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
@@ -1120,16 +1176,16 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                                 try {
                                                   await ethereum.request({
                                                     method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x14a34', 
-                                                  chainName: 'Base Sepolia Testnet',
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
                                                      nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
                                                             },
-                                                    blockExplorerUrls: ['https://sepolia.basescan.org'],
-                                                    rpcUrls: ['https://sepolia.base.org'] }],
-                                          	    });
+		                            				rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
+                                                  });
                                                 } catch (addError) {
                                                   // handle "add" error
                                                 }
@@ -1139,8 +1195,8 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0x13AC73f187822db758B9c1f6ADda08A15640794F';
-                                            const tokenSymbol2 = 'M0xBTC';
+                                            const tokenAddress2 = '0xB6eD7644C69416d67B522e20bC294A9a9B405B31';
+                                            const tokenSymbol2 = '0xBTC';
                                             const tokenDecimals2 = 8;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/0xbitcoin.png';
                                                          
@@ -1385,7 +1441,7 @@ By clicking buttons below in a browser with Metamask installed</pre>
                         <!-- This is where users can download our miner or view the stats page -->
 Click the icon links above for our social profiles!! We would LOVE to hear from you! Good or bad!<br>
                         <!--Download is located here, already rigged to the button for instant download-->
-                        <a href="https://discord.gg/QrGNf47ATk" class="btn btn-default btnsex">Join us On Discord for the fastest responses</a><br>
+                        <a href="https://discord.gg/QrGNf47ATk" class="btn btn-default btnsex22">Join us On Discord for the fastest responses</a><br>
 </div>
                     
                     </div>
@@ -1403,7 +1459,8 @@ Click the icon links above for our social profiles!! We would LOVE to hear from 
 
             </div>    </div>
            
-
+				</div></div></div>
+    
   <style>
 /* Footer base styles */
 footer {
@@ -1422,7 +1479,7 @@ footer {
 .footer-row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 35px;
+    margin: 0 -15px;
 }
 
 /* Column styles */
@@ -1432,8 +1489,8 @@ footer {
 }
 
 .footer-col-metamask {
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 0%;
+    max-width: 0%;
 }
 
 .footer-col-about {
@@ -1508,8 +1565,7 @@ footer {
 <footer>
     <div class="footer-container">
         <div class="footer-row">
-            <!-- MetaMask Column -->
-            
+          
 
             <!-- About Column -->
             <div class="footer-col footer-col-about">
@@ -1548,6 +1604,9 @@ footer {
         </div>
     </div>
 </footer>
+             
+
+
                                  
 
 

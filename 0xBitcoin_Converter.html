@@ -31,22 +31,31 @@
     <script src="https://www.googletagmanager.com/gtag/js?id=UA-217288124-1"></script>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.10.0/web3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/9.1.1/bignumber.min.js"></script>
+
     <style>
 	     body { 
+  background: url(https://testnet.basedworktoken.org/img/luke-chesser-B_oL3jEt5L4-unsplash.jpg);
+    background-repeat: no-repeat;
+background-attachment: fixed;
+    background-size: 100% 100vh;
             font-family: Arial, sans-serif; 
-            max-width: 600px;
             margin: 20px auto; 
-            padding: 20px; 
-            background-color: #f4f4f4; 
+            padding: 0px; 
         }
         button { 
             margin: 10px 0; 
-            padding: 10px; 
-            background-color: #4CAF50; 
+			font-size: 2em;
+            padding: 30px; 
+            background: linear-gradient(to right, #4bcbf1, #1467f4);
             color: white; 
             border: none; 
             cursor: pointer; 
         }
+button:active {
+    box-shadow: 0 0 20px 10px rgba(220, 103, 231, 0.8), 0 0 30px 15px rgba(188, 121, 239, 0.5);
+    transform: scale(0.95); /* Adds a slight "pressing" effect */
+}
         .balance-section {
             background-color: white;
             border-radius: 5px;
@@ -66,18 +75,22 @@
         }
         #status {
             color: green;
+			font-size:3em;
             margin-top: 10px;
         }
         #error {
-            color: red;
+            color: white;
+			font-size:3em;
             margin-top: 10px;
         }
         #status2 {
             color: green;
+			font-size:3em;
             margin-top: 10px;
         }
         #error2 {
-            color: red;
+            color: white;
+			font-size:3em;
             margin-top: 10px;
         }
 		
@@ -111,12 +124,13 @@
         
         .compact-balance-item h4 {
             margin: 0 0 5px 0;
-            font-size: 0.9em;
+            font-size: 2em;
             color: #333;
         }
         
         .compact-balance-item p {
             margin: 0;
+			font-size: 2em;
             font-weight: bold;
             color: #007bff;
         }
@@ -155,11 +169,36 @@
 	  #my-toggle:not(:checked) + .btn-toggle {
 	    background-color: green;
 	  }
-
+        .container {
+            padding: 20px;
+        }
+        .function-section {
+            margin-bottom: 20px;
+        }
+        .input-container {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .max-button {
+            position: absolute;
+            right: -5px;
+            top: 35%;
+            transform: translateY(-50%);
+            background: blue;
+            border: 1px solid #ccc;
+            border-radius: 33px;
+            padding: 5px 12px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        input[type="number"] {
+            padding-right: 50px;
+        }
     </style>
 </head>
 <body>
-
+ 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -179,7 +218,7 @@
                         <a href="/" style="font-size:1.1em">Home</a>
                     </li>
                   <li>
-                    <a href="https://syncswap.xyz/swap?outputCurrency=0x366d17aDB24A7654DbE82e79F85F9Cb03c03cD0D" style="font-size:1.1em">Buy Based Work</a>
+                    <a href="https://swap.defillama.com/?chain=base&from=0x0000000000000000000000000000000000000000&tab=swap&to=0x677F124CD209489F6621eebDFdA1E32c625214d4" style="font-size:1.1em">Buy Based Work</a>
                 </li>
                     <li>
                         <a href="stats.html"style="font-size:1.1em">Token Stats</a>
@@ -221,13 +260,14 @@
         <!-- class /.container -->
     </nav>
     
-
+<center>
     <h1>0xBitcoin Token Converter</h1>
     
-    <button id="connectButton">Connect MetaMask</button>
-      <div id="balanceSection" style="display:none;">
+    <button id="connectButton">Click Here To Connect MetaMask</button>
+	</center>      
+<div id="balanceSection" style="display:none;">
 	  <div class="MetamaskAccount">
-	  <center><p id="connectedAccount">Loading...</p></center>
+	  <center><h3 id="connectedAccount">Loading...</h3></center>
 	  </div>
         <div class="compact-balance-container">
             <div class="compact-balance-item">
@@ -250,23 +290,31 @@
                 <p id="token2Balance">Loading...</p>
             </div>
         </div>
-    </div>
+	<center>
     <div id="status"> </div>
     <div id="error"></div>
-    <div class="container">
-        <div id="functionsSection" style="display:none;">
+	</center>
+	<center>
+      <div class="container">
+        <div id="functionsSection">
             <div class="function-section">
                 <h2>Deposit 0xBitcoin Token to Base Work Token</h2>
-                <input type="number" id="depositAmount" placeholder="Enter Deposit Amount">
+                <div class="input-container">
+                    <input type="number" id="depositAmount" placeholder="Enter Deposit Amount">
+                    <button class="max-button" onclick="setMaxDeposit()">Max</button>
+                </div>
                 <button id="depositButton">Deposit</button>
             </div>
-
             <div class="function-section">
                 <h2>Withdraw Base Work Token to 0xBitcoin Token</h2>
-                <input type="number" id="withdrawAmount" placeholder="Enter Withdrawal Amount">
+                <div class="input-container">
+                    <input type="number" id="withdrawAmount" placeholder="Enter Withdrawal Amount">
+                    <button class="max-button" onclick="setMaxWithdraw()">Max</button>
+                </div>
                 <button id="withdrawButton">Withdraw</button>
             </div>
         </div>
+    </div>
         
     <div id="status2"> </div>
     <div id="error2"></div>
@@ -274,6 +322,7 @@
 	</div>
 	
 	
+	<center>
 	<a id="sepoliaFaucetButton" 
        href="https://www.alchemy.com/faucets/base-sepolia" 
        class="faucet-button" 
@@ -315,28 +364,36 @@
         </div>
     </div>
 		 <button id="doNothingImportantButton" style="display:none;" >Show Call Approve Functions</button>
+	
+	</center>
 	</body>
+	</div>
   
   <style>
 /* Footer base styles */
-footer {
-    background-color: #333;
+	  
+	  footer {
+    background-color: black;
     color: white;
     padding: 40px 0;
     width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+    max-width: 100%; /* Ensure it stretches full width */
+    margin: 0; /* Remove margin to align with the screen */
+    padding: 0 15px; /* Optional padding inside */
 }
 
 .footer-row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -15px;
+    margin: 0; /* Remove gaps around */
 }
+
 
 /* Column styles */
 .footer-col {
@@ -467,7 +524,7 @@ footer {
             </div>
         </div>
     </div>
-</footer>
+</footerf>
     <script>
     
                                         
@@ -478,10 +535,10 @@ footer {
                                         
     
         // Token Contract ABIs and Addresses (replace with your actual contracts)
-        const TOKEN1_ADDRESS = '0xb9d1fFDA9F44bD57191145297d2FEaEf097De4dd'; // RightsTo0xBitcoin Token (R0xBTC)
-        const TOKEN2_ADDRESS = '0x13AC73f187822db758B9c1f6ADda08A15640794F'; // Mock 0xBitcoin Contract (M0xBTC)
-        const TOKEN3_ADDRESS = '0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f'; // Base Work Token (Main contract)
-        const Token_Mining_address = '0x145a6c4421C14486A4f1bDe654ACc56ea810316D';
+        const TOKEN1_ADDRESS = '0xc328597Ac483478f824A806163559ddccb46Eb0F'; // RightsTo0xBitcoin Token (R0xBTC)
+        const TOKEN2_ADDRESS = '0xB6eD7644C69416d67B522e20bC294A9a9B405B31'; // Mock 0xBitcoin Contract (M0xBTC)
+        const TOKEN3_ADDRESS = '0x2f38B1a516239739CdCD2C228D1Eb96E29800975'; // Base Work Token (Main contract)
+        const Token_Mining_address = '0x2f38B1a516239739CdCD2C228D1Eb96E29800975';
           
         var isEnabled = false;
         
@@ -587,7 +644,7 @@ footer {
 		        try {
 		            await window.ethereum.request({
 		                method: 'wallet_switchEthereumChain',
-		                params: [{ chainId: '0x14a34' }] // Chain ID in hexadecimal (84532 = 0x14a34)
+		                params: [{ chainId: '0x1' }] // Chain ID in hexadecimal (84532 = 0x14a34)
 		            });
 		            document.getElementById('status').textContent = 'Switched to Base Sepolia Network';
 		            document.getElementById('status2').textContent = 'Switched to Base Sepolia Network';
@@ -598,10 +655,10 @@ footer {
 		                    await window.ethereum.request({
 		                        method: 'wallet_addEthereumChain',
 		                        params: [{
-		                            chainId: '0x14a34',
-		                            chainName: 'Base Sepolia Testnet',
-		                            rpcUrls: ['https://sepolia.base.org'],
-		                            blockExplorerUrls: ['https://sepolia.basescan.org'],
+		                            chainId: '0x1',
+		                            chainName: 'Ethereum',
+		                            rpcUrls: ['https://eth.llamarpc.com'],
+		                            blockExplorerUrls: ['https://etherscan.org'],
 		                            nativeCurrency: {
 		                                name: 'Ether',
 		                                symbol: 'ETH',
@@ -609,11 +666,11 @@ footer {
 		                            }
 		                        }]
 		                    });
-		                    document.getElementById('status').textContent = 'Added and switched to Base Sepolia Network';
-		                    document.getElementById('status2').textContent = 'Added and switched to Base Sepolia Network';
+		                    document.getElementById('status').textContent = 'Added and switched to Ethereum Network';
+		                    document.getElementById('status2').textContent = 'Added and switched to Ethereum Network';
 		                } catch (addError) {
-		                    document.getElementById('error').textContent = 'Failed to add Base Sepolia: ' + addError.message;
-		                    document.getElementById('error2').textContent = 'Failed to add Base Sepolia: ' + addError.message;
+		                    document.getElementById('error').textContent = 'Failed to add Ethereum Network: ' + addError.message;
+		                    document.getElementById('error2').textContent = 'Failed to add Ethereum Network: ' + addError.message;
 		                }
 		            } else {
 		                document.getElementById('error').textContent = 'Failed to switch network: ' + switchError.message;
@@ -621,8 +678,8 @@ footer {
 		            }
 		        }
 		    } else {
-		        document.getElementById('status').textContent = 'Connected to Base Sepolia Network';
-		        document.getElementById('status2').textContent = 'Connected to Base Sepolia Network';
+		        document.getElementById('status').textContent = 'Connected to Ethereum Network';
+		        document.getElementById('status2').textContent = 'Connected to Ethereum Network';
 		    }
 
 		    // Show sections and initialize contracts
@@ -852,7 +909,8 @@ footer {
             // Get input values
             const contractAddress = TOKEN3_ADDRESS;
             const withdrawAmount = document.getElementById('withdrawAmount').value;
-            const decimals = 18;
+			 console.log("withdraw AMOUNT: ",withdrawAmount);
+            const decimals = 8;
             // Validation
             if (!contractAddress) {
                 document.getElementById('error').textContent = 'Please enter contract address';
@@ -870,8 +928,7 @@ footer {
                 const contract = new web3.eth.Contract(CONTRACT_ABI3, contractAddress);
 
                 // Convert amount to wei/smallest unit
-                const tokenAmount = web3.utils.toBN(withdrawAmount* 10 ** decimals);
-
+			const tokenAmount = web3.utils.toBN(new BigNumber(withdrawAmount).multipliedBy(10**decimals).toFixed(0));
 			console.log("app1: "+app1);
 			console.log("app1tokenAmount: "+tokenAmount);
 			console.log("app1dobby: "+dobby);
@@ -882,15 +939,16 @@ footer {
 			console.log("app1BN: "+app1BN);
 			console.log("app1tokenAmountBN: "+tokenAmountBN);
 			console.log("app1bal3: "+tokenAmountBN);
-			console.log("app1dobby: "+dobby);
-			
-            if (BigInt(tokenAmountBN) > BigInt(bal3) || BigInt(tokenAmountBN) > BigInt(bal1) ) {
+			console.log("app1BigInt(bal1): "+BigInt(bal1/1e10));
+						var bal11212 = web3.utils.toBN(new BigNumber(bal1).dividedBy(10**10).toFixed(0));
+
+            if (BigInt(tokenAmountBN) > BigInt(bal3) || BigInt(tokenAmountBN) > BigInt(bal11212) ) {
 					if(BigInt(tokenAmountBN) > BigInt(bal3)){
 						document.getElementById('error').textContent = 'Enter withdrawal amount less than Base Work Token balance amount';
 						document.getElementById('error2').textContent = 'Enter withdrawal amount less than Base Work Token balance amount';
 						return;
 					
-					}else if( BigInt(tokenAmountBN) > BigInt(bal1)){
+					}else if( BigInt(tokenAmountBN) > BigInt(bal11212)){
 						document.getElementById('error').textContent = 'Enter withdrawal amount less than balance of "Rights to 0xBitcoin" amount';
 						document.getElementById('error2').textContent = 'Enter withdrawal amount less than balance of "Rights to 0xBitcoin" amount';
 						return;
@@ -915,6 +973,31 @@ footer {
                 console.error(error);
             }
         }	
+		
+		
+		
+		    function setMaxDeposit() {
+            // Replace this with actual balance checking
+            const maxAmount = 1000; // Example value
+            document.getElementById('depositAmount').value = bal2/1e8;
+        }
+
+        function setMaxWithdraw() {
+            // Replace this with actual balance checking
+            const maxAmount = 500; // Example value
+			if(bal3>bal1){
+				
+          		  document.getElementById('withdrawAmount').value = bal1/1e18;
+				console.log("Value = ",bal1/1e18 );
+			}else{
+				
+            		document.getElementById('withdrawAmount').value = bal3/1e18;
+				console.log("Value = ",bal3/1e18 );
+			}
+        }
+		
+		
+		
 		
 		//From v1 to v2
         async function depositTokensSTUFF() {
@@ -979,7 +1062,7 @@ footer {
 ]
                 const contract = new web3.eth.Contract(CONTRACT_ABI3, contractAddress);
                 // Convert amount to wei/smallest unit
-                const tokenAmount = web3.utils.toBN(depositAmount * 10 ** decimals);
+			const tokenAmount = web3.utils.toBN(new BigNumber(depositAmount).multipliedBy(10**decimals).toFixed(0));
 
 
 			console.log("app2: "+app2);
@@ -1116,7 +1199,7 @@ footer {
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f';
+                                            const tokenAddress2 = '0x677F124CD209489F6621eebDFdA1E32c625214d4';
                                             const tokenSymbol2 = 'BWORK';
                                             const tokenDecimals2 = 18;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
