@@ -272,7 +272,7 @@ background-attachment: fixed;
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2><img alt="forge" src="./img/IconForge.png" width="50" height="50" style="margin-right: 1%;">Based Work Token Information</h2><h3>Base Token Contract: 0x677F124CD209489F6621eebDFdA1E32c625214d4</h3><h3>Base Mining Contract: 0x2f38B1a516239739CdCD2C228D1Eb96E29800975</h3>
+                        <h2><img alt="forge" src="./img/IconForge.png" width="50" height="50" style="margin-right: 1%;">Based Work Token Information</h2><h4>Base Token Contract: 0x677F124CD209489F6621eebDFdA1E32c625214d4</4><h4>Mainnet Contract: 0x2f38b1a516239739cdcd2c228d1eb96e29800975</h4>
                         
                     </div>
 
@@ -295,8 +295,8 @@ Our mission: Keep the core principles of blockchain's original vision alive, whi
 
                 
                         <a href="whitepaper.html" class="btn btn-default btnsex">WhitePaper</a>
-			<a href="https://basescan.org/address/0x2f38B1a516239739CdCD2C228D1Eb96E29800975#tokentxns" class="btn btn-default btnsex2">Based Work Mining Contract</a>
-			<a href="https://basescan.org/token/0x677F124CD209489F6621eebDFdA1E32c625214d4#tokentxns" class="btn btn-default btnsex2">Based Token Contract - Base Network</a>
+			<a href="https://etherscan.io/address/0x2f38B1a516239739CdCD2C228D1Eb96E29800975#tokentxns" class="btn btn-default btnsex2">Based Work Token Contract - Ethereum</a>
+			<a href="https://basescan.org/token/0x677F124CD209489F6621eebDFdA1E32c625214d4#tokentxns" class="btn btn-default btnsex2">Based Work Token Contract - Base Network</a>
                       
                     </div>
                 </div>
@@ -321,7 +321,7 @@ Our mission: Keep the core principles of blockchain's original vision alive, whi
             <div class="md-4">
               <div class="panel panel-default">
                   <div class="panel-heading">
-                      <h2><i class="fa fa-fw fa-money"></i>Proof of Work Contract </h2>
+                      <h2><i class="fa fa-fw fa-money"></i>Proof of Work Contract </h2><h4>Base Mining Contract: 0x2f38B1a516239739CdCD2C228D1Eb96E29800975</h4>
                   </div>
                   <div class="panel-body">
 
@@ -357,7 +357,7 @@ Change this setting in your BaseWorkToken.conf file by changing the "MinBWORKper
               <div class="panel panel-default">
                   <div class="panel-heading">
                       <h2><i class="fa fa-fw fa-money"></i>0xBitcoin Conversion / Allocatioin
-</h2>
+</h2><h4>RightsTo0xBitcoin Contract: 0xc328597Ac483478f824A806163559ddccb46Eb0F</h4>
                   </div>
                   <div class="panel-body">
 
@@ -409,12 +409,13 @@ Rights to 0xBitcoin is a seperate token that allows us to have a conversion both
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                            <h2><img alt="forge" src="./img/imgzz.png" width="50" height="50" style="margin-right: 1%;"> Add Mainnet Tokens to Metamask </h2>
-                    </div><pre>Adds Base Work Tokens, 0xBitcoin, and RightsTo0xBitcoin to a users Metamask 
-On the Ethereum Blockchain Network (Chain ID: 8453)
+                            <h2><img alt="forge" src="./img/imgzz.png" width="50" height="50" style="margin-right: 1%;"> Add Tokens to Metamask </h2>
+                    </div><pre>Adds Based Work Tokens for Base Network (Chain ID: 8453)
+Adds Based Work Tokens, 0xBitcoin, and RightsTo0xBitcoin to a users Metamask On the Ethereum Blockchain Network (Chain ID: 1)
 By clicking buttons below in a browser with Metamask installed</pre>
                     <div class="panel-body">
-<button type="button" class="a2zenableEthereumButton52221 btn btn-default btnsex">Add Base Work Tokens to Metamask</button>
+<button type="button" class="zenableEthereumButton52221 btn btn-default btnsex">Add Based Work Tokens to Metamask Base Chain</button>
+<button type="button" class="a2zenableEthereumButton52221 btn btn-default btnsex">Add Based Work Tokens to Metamask ETH Chain</button>
 
                       <button type="button" class="azenableEthereumButton52221 btn btn-default btnsex21">Add RightsTo0xBitcoin Tokens to Metamask</button>
                 <button type="button" class="azenableEthereumButton32221 btn btn-default btnsex33">Add 0xBitcoin Tokens to Metamask</button>
@@ -450,11 +451,10 @@ By clicking buttons below in a browser with Metamask installed</pre>
 
                                       async function getAccount511() {
                                             
-                                            
-                                          try {
+                                      try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x144' }],
+                                                params: [{ chainId: '0x2105' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
@@ -462,15 +462,15 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                                 try {
                                                   await ethereum.request({
                                                     method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x144', 
-                                                    chainName: 'zkSync Era',
+                                                    params: [{ chainId: '0x2105', 
+                                                    chainName: 'Base Mainnet',
                                                     nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
                                                     },
-                                                    blockExplorerUrls: ['https://explorer.zksync.io/'],
-                                                    rpcUrls: ['https://mainnet.era.zksync.io'] }],
+                                                    blockExplorerUrls: ['https://basescan.org'],
+                                                    rpcUrls: ['https://mainnet.base.org'] }],
                                                   });
                                                 } catch (addError) {
                                                   // handle "add" error
@@ -481,12 +481,12 @@ By clicking buttons below in a browser with Metamask installed</pre>
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0xe21010cdA483ac1Ae6375e5D50dB2293307C4b60';
-                                            const tokenSymbol2 = 'ETH/zkBTC';
+                                            const tokenAddress2 = '0x677F124CD209489F6621eebDFdA1E32c625214d4';
+                                            const tokenSymbol2 = 'BWORK';
                                             const tokenDecimals2 = 18;
-                                            const tokenImage2 = 'https://zkbitcoin.org/img/syncswap.png';
+                                            const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
         
-                                                                                               
+                                                                          
                                             
                                                                                                
                                             

@@ -366,10 +366,10 @@ footer {
                                     async function getAccount22ff() {
                                             
                                                                 
-                                          try {
+                                         try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x14a34' }],
+                                                params: [{ chainId: '0x2105' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
@@ -377,15 +377,15 @@ footer {
                                                 try {
                                                   await ethereum.request({
                                                     method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x14a34', 
-                                                    chainName: 'Base Sepolia Testnet',
+                                                    params: [{ chainId: '0x2105', 
+                                                    chainName: 'Base Mainnet',
                                                     nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
                                                     },
-                                                    blockExplorerUrls: ['https://sepolia.basescan.org'],
-                                                    rpcUrls: ['https://sepolia.base.org'] }],
+                                                    blockExplorerUrls: ['https://basescan.org'],
+                                                    rpcUrls: ['https://mainnet.base.org'] }],
                                                   });
                                                 } catch (addError) {
                                                   // handle "add" error
@@ -401,8 +401,7 @@ footer {
                                             const tokenDecimals2 = 18;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
         
-                                        
-                                               
+                                                                          
                                                         
                                                                                                
                                             

@@ -474,7 +474,6 @@ button:active {
     }
 }
 </style>
-
 <footer>
     <div class="footer-container">
         <div class="footer-row">
@@ -482,8 +481,17 @@ button:active {
             <div class="footer-col footer-col-metamask">
                 <h5>Add Token to MetaMask</h5>
                 <div>
+                    <button type="button" class="a2zenableEthereumButton52221 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        Add Based Work Tokens ETH
+                    </button>
                     <button type="button" class="zenableEthereumButton22 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                        Add Based Work Tokens
+                        Add Based Work Tokens Base
+                    </button>
+                    <button type="button" class="zenableEthereumButton52221 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        Add RightsTo0xBitcoin ETH
+                    </button>
+                    <button type="button" class="zenableEthereumButton32221 btn btn-hover color-1 glowing addedstylebutton" style="width: 100%; font-size: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        Add 0xBitcoin Tokens ETH
                     </button>
                 </div>
             </div>
@@ -1153,42 +1161,53 @@ button:active {
         
         
         
+                                   
+		
+		
+
+
+
+                                    
                                     //Sending Ethereum to an address
                                     //
-                                    const ethereumButton22ff = document.querySelector('.zenableEthereumButton22');
+                                    const a2ethereumButton511 = document.querySelector('.a2zenableEthereumButton52221');
                                     
-                                    ethereumButton22ff.addEventListener('click', () => {
-                                      getAccount22ff();
-                               
+                                    a2ethereumButton511.addEventListener('click', () => {
                                    
+                                      a2getAccount511();
+                                
                                     });
                                     
                                     
-                                        
-                                    
-                                    async function getAccount22ff() {
+                                    async function getAccount() {
+                                      accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                      showAccount.innerHTML = accounts;
+                                     console.log(accounts);
+                                    }
+
+                                      async function a2getAccount511() {
                                             
-                                                                
+                                            
                                           try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x14a34' }],
+                                                params: [{ chainId: '0x1' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
                                               if (switchError.code === 4902) {
                                                 try {
                                                   await ethereum.request({
-                                                    method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x14a34', 
-                                                    chainName: 'Base Sepolia Testnet',
+                                                      method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
                                                     nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
-                                                    },
-                                                    blockExplorerUrls: ['https://sepolia.basescan.org'],
-                                                    rpcUrls: ['https://sepolia.base.org'] }],
+                                                },
+		                            		rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
                                                   });
                                                 } catch (addError) {
                                                   // handle "add" error
@@ -1199,14 +1218,14 @@ button:active {
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0x677F124CD209489F6621eebDFdA1E32c625214d4';
+                                            const tokenAddress2 = '0x2f38B1a516239739CdCD2C228D1Eb96E29800975';
                                             const tokenSymbol2 = 'BWORK';
                                             const tokenDecimals2 = 18;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
         
                                         
-                                               
-                                                        
+                                                                                               
+                                            
                                                                                                
                                             
                                             try {
@@ -1234,7 +1253,343 @@ button:active {
                                       console.log(error);
                                     }
                                         }
+
+                                    
+                                    //Sending Ethereum to an address
+                                    //
+                                    const ethereumButton511 = document.querySelector('.zenableEthereumButton52221');
+                                    
+                                    ethereumButton511.addEventListener('click', () => {
+                                   
+                                      getAccount511();
+                                
+                                    });
+                                    
+                                    
+                                    async function getAccount() {
+                                      accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                      showAccount.innerHTML = accounts;
+                                     console.log(accounts);
+                                    }
+
+                                      async function getAccount511() {
+                                            
+                                            
+                                          try {
+                                              await ethereum.request({
+                                                method: 'wallet_switchEthereumChain',
+                                                params: [{ chainId: '0x1' }],
+                                              });
+                                            } catch (switchError) {
+                                              // This error code indicates that the chain has not been added to MetaMask.
+                                              if (switchError.code === 4902) {
+                                                try {
+                                                  await ethereum.request({
+                                                    method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
+                                                    nativeCurrency: {
+                                                        name: 'Ethereum',
+                                                        symbol: 'ETH', // 2-6 characters long
+                                                        decimals: 18
+                                                },
+		                            		rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
+                                                  });
+                                                } catch (addError) {
+                                                  // handle "add" error
+                                                }
+                                              }
+                                              // handle other "switch" errors
+                                            }		
+                                                    
+                                            await new Promise(r => setTimeout(r, 20));
+                                            accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                            const tokenAddress2 = '0xc328597Ac483478f824A806163559ddccb46Eb0F';
+                                            const tokenSymbol2 = 'R0xBTC';
+                                            const tokenDecimals2 = 18;
+                                            const tokenImage2 = 'https://basedworktoken.github.io/img/RightsTo0xBitcoin.png';
+        
+                                                                                     
+                                            
+                                            try {
+                                              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+                                              const wasAdded = await ethereum.request({
+                                                method: 'wallet_watchAsset',
+                                                params: {
+                                                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                                                  options: {
+                                                    address: tokenAddress2, // The address that the token is at.
+                                                    symbol: tokenSymbol2, // A ticker symbol or shorthand, up to 5 chars.
+                                                    decimals: tokenDecimals2,  // The number of decimals in the token
+                                                    image: tokenImage2, // A string url of the token logo
+        
+                                                  },
+                                                },
+                                              });
+
+                                              if (wasAdded) {
+                                        console.log('Thanks for your interest!');
+                                      } else {
+                                        console.log('Your loss!');
+                                      }
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                        }
+
+
+
+
+
+
+
+
+
+                                    
+                                    //Sending Ethereum to an address
+                                    //
+                                    const ethereumButton5 = document.querySelector('.zenableEthereumButton32221');
+                                    
+                                    ethereumButton5.addEventListener('click', () => {
+                                   
+                                      getAccount5();
+                                
+                                    });
+                                    
+                                    
+                                    async function getAccount() {
+                                      accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                      showAccount.innerHTML = accounts;
+                                     console.log(accounts);
+                                    }
+
+                                      async function getAccount5() {
+                                            
+                                            
+                                             try {
+                                              await ethereum.request({
+                                                method: 'wallet_switchEthereumChain',
+                                                params: [{ chainId: '0x1' }],
+                                              });
+                                            } catch (switchError) {
+                                              // This error code indicates that the chain has not been added to MetaMask.
+                                              if (switchError.code === 4902) {
+                                                try {
+                                                  await ethereum.request({
+                                                    method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
+                                                    nativeCurrency: {
+                                                        name: 'Ethereum',
+                                                        symbol: 'ETH', // 2-6 characters long
+                                                        decimals: 18
+                                                },
+		                            		rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
+                                                  });
+                                                } catch (addError) {
+                                                  // handle "add" error
+                                                }
+                                              }
+                                              // handle other "switch" errors
+                                            }			
+                                                    
+                                            await new Promise(r => setTimeout(r, 20));
+                                            accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                 	     const tokenAddress2 = '0xB6eD7644C69416d67B522e20bC294A9a9B405B31';
+                                            const tokenSymbol2 = '0xBTC';
+                                            const tokenDecimals2 = 8;
+                                            const tokenImage2 = 'https://basedworktoken.github.io/img/0xbitcoin.png';
+                                                         
+                                            
+                                                                             
+                                                                                              
+                                            
+                                            try {
+                                              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+                                              const wasAdded = await ethereum.request({
+                                                method: 'wallet_watchAsset',
+                                                params: {
+                                                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                                                  options: {
+                                                    address: tokenAddress2, // The address that the token is at.
+                                                    symbol: tokenSymbol2, // A ticker symbol or shorthand, up to 5 chars.
+                                                    decimals: tokenDecimals2,  // The number of decimals in the token
+                                                    image: tokenImage2, // A string url of the token logo
+        
+                                                  },
+                                                },
+                                              });
+
+                                              if (wasAdded) {
+                                        console.log('Thanks for your interest!');
+                                      } else {
+                                        console.log('Your loss!');
+                                      }
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                        }
+
+
+
+
+
+
+
+
+
+
+
+
+                                    //Sending Ethereum to an address
+                                    //
+                                    const ethereumButton22ff = document.querySelector('.zenableEthereumButton22');
+                                    
+                                    ethereumButton22ff.addEventListener('click', () => {
+                                      getAccount22ff();
+                               
+                                   
+                                    });
+                                    
+                                    
+                                    async function getAccount() {
+                                      accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                      showAccount.innerHTML = accounts;
+                                     console.log(accounts);
+                                    }
                                         
+                                    
+                                    async function getAccount22ff() {
+                                            
+                                            
+                                            
+                                            try {
+                                              await ethereum.request({
+                                                method: 'wallet_switchEthereumChain',
+                                                params: [{ chainId: '0x2105' }],
+                                              });
+                                            } catch (switchError) {
+                                              // This error code indicates that the chain has not been added to MetaMask.
+                                              if (switchError.code === 4902) {
+                                                try {
+                                                  await ethereum.request({
+                                                    method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x2105', 
+                                                    chainName: 'Base Mainnet',
+                                                    nativeCurrency: {
+                                                        name: 'Ethereum',
+                                                        symbol: 'ETH', // 2-6 characters long
+                                                        decimals: 18
+                                                    },
+                                                    blockExplorerUrls: ['https://basescan.org'],
+                                                    rpcUrls: ['https://mainnet.base.org'] }],
+                                                  });
+                                                } catch (addError) {
+                                                  // handle "add" error
+                                                }
+                                              }
+                                              // handle other "switch" errors
+                                            }		
+                                                    
+                                            await new Promise(r => setTimeout(r, 20));
+                                            accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                                            const tokenAddress2 = '0x677F124CD209489F6621eebDFdA1E32c625214d4';
+                                            const tokenSymbol2 = 'BWORK';
+                                            const tokenDecimals2 = 18;
+                                            const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
+        
+                                                                          
+                                                                                                 
+                                            
+                                            try {
+                                              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+                                              const wasAdded = await ethereum.request({
+                                                method: 'wallet_watchAsset',
+                                                params: {
+                                                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                                                  options: {
+                                                    address: tokenAddress2, // The address that the token is at.
+                                                    symbol: tokenSymbol2, // A ticker symbol or shorthand, up to 5 chars.
+                                                    decimals: tokenDecimals2,  // The number of decimals in the token
+                                                    image: tokenImage2, // A string url of the token logo
+        
+                                                  },
+                                                },
+                                              });
+
+                                              if (wasAdded) {
+                                        console.log('Thanks for your interest!');
+                                      } else {
+                                        console.log('Your loss!');
+                                      }
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                        }
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
                                         
         
         
