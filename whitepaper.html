@@ -241,7 +241,7 @@ but interfaces and other contracts MUST NOT expect these values to be present.</
 <li>Rewards decrease as more tokens are minted</li>
 <li>ERC20 compatibility</li>
 </ul>
-<p>As such, the only way for a user to acquire Based Work Tokens is to mine them or purchase them from miners on decentralized exchanges. The mintTo and multiMint_SameAddress functions is responsible for verifying the validity of the hash solution, updating the contracts internal state and issuing new Based Work Token.  They are shown below</p>
+<p>As such, the only way for a user to acquire Based Work Tokens is to mine them, convert them from 0xBitcoin, or purchase them from miners on decentralized exchanges. The mintTo and multiMint_SameAddress functions is responsible for verifying the validity of the hash solution, updating the contracts internal state and issuing new Based Work Token.  They are shown below</p>
 <pre><code class="lang-js">
         <span class="hljs-function">function <span class="hljs-title">mintTo</span>(<span class="hljs-params">uint256 nonce, address mintToAddress</span>) <span class="hljs-keyword">public</span> </span>{
             bytes32 localChallengeNumber = challengeNumber;
@@ -302,8 +302,6 @@ The only way to MultiMint is using the multiMint_SameAddress function.  Which is
                 usedCombinations[localChallengeNumber][digest] = true;
 		  
 
-                GoodLoops = GoodLoops.<span class="hljs-keyword">add</span>(1);
-                
                 usedCombinations[digest] = true;
                 <span class="hljs-keyword">if</span> (GoodLoops >= NextEpochCount) {
 
@@ -312,6 +310,7 @@ The only way to MultiMint is using the multiMint_SameAddress function.  Which is
                     }
                 }
             
+ 			require(GoodLoops &gt; 0, <span class="hljs-string">"Must have a valid solve"</span>);
 
             _startNewMiningEpoch_MultiMint_Mass_Epochs(GoodLoops, NextEpochCount);
 
