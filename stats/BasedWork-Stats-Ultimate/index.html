@@ -684,26 +684,28 @@ footer {
                                     async function getAccount22ff() {
                                             
                                                                 
+                                                
+                                            
                                           try {
                                               await ethereum.request({
                                                 method: 'wallet_switchEthereumChain',
-                                                params: [{ chainId: '0x14a34' }],
+                                                params: [{ chainId: '0x1' }],
                                               });
                                             } catch (switchError) {
                                               // This error code indicates that the chain has not been added to MetaMask.
                                               if (switchError.code === 4902) {
                                                 try {
                                                   await ethereum.request({
-                                                    method: 'wallet_addEthereumChain',
-                                                    params: [{ chainId: '0x14a34', 
-                                                    chainName: 'Base Sepolia Testnet',
+                                                      method: 'wallet_addEthereumChain',
+                                                    params: [{ chainId: '0x1', 
+                                                  chainName: 'Ethereum Mainnet',
                                                     nativeCurrency: {
                                                         name: 'Ethereum',
                                                         symbol: 'ETH', // 2-6 characters long
                                                         decimals: 18
-                                                    },
-                                                    blockExplorerUrls: ['https://sepolia.basescan.org'],
-                                                    rpcUrls: ['https://sepolia.base.org'] }],
+                                                },
+		                            		rpcUrls: ['https://eth.llamarpc.com'],
+                                                    rpcUrls: ['https://etherscan.io'] }],
                                                   });
                                                 } catch (addError) {
                                                   // handle "add" error
@@ -714,12 +716,13 @@ footer {
                                                     
                                             await new Promise(r => setTimeout(r, 20));
                                             accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                                            const tokenAddress2 = '0x677F124CD209489F6621eebDFdA1E32c625214d4';
+                                            const tokenAddress2 = '0x2f38B1a516239739CdCD2C228D1Eb96E29800975';
                                             const tokenSymbol2 = 'BWORK';
                                             const tokenDecimals2 = 18;
                                             const tokenImage2 = 'https://basedworktoken.github.io/img/zkBitcoin_icon_32px32px.png';
         
                                         
+                                                         
                                                
                                                         
                                                                                                
