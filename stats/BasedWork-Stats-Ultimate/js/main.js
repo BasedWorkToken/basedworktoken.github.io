@@ -11,7 +11,7 @@ log('zkBitcoin Stats', version);
 el('#footerversion').innerHTML = version;
 
 
-var ethblockstart = 19140037;
+var ethblockstart = 24007014;
 const ShowStats = true; //Removes my excessive stats
 const API_zkBTC_Users_tx_transactions = "https://raw.githubusercontent.com/BasedWorkToken/Based-Work-Token-General/main/api/BWORK_statsPage_stats.html"
 const Forge_Pool_efficeny = 150/32 + 1  //150 min solves and 32 min on Forge only
@@ -24,8 +24,8 @@ const _ZERO_BN = new Eth.BN(0, 10);
 /* todo: move these into some kind of contract helper class */
 const _CONTRACT_NAME = "BasedWorkToken";
 const _CONTRACT_SYMBOL = "BWORK";
-const _CONTRACT_ADDRESS = "0x145a6c4421C14486A4f1bDe654ACc56ea810316D"; // main Mining contract for Based Work Token Contract
-const Main_CONTRACT_ADDRESS = "0x158A9607FaE8ae0754eF39dE978eA4751A4C6d1f"; // main Based Work Token Contract
+const _CONTRACT_ADDRESS = "0x2f38B1a516239739CdCD2C228D1Eb96E29800975"; // main Mining contract for Based Work Token Contract
+const Main_CONTRACT_ADDRESS = "0x2f38B1a516239739CdCD2C228D1Eb96E29800975"; // main Based Work Token Contract
 
 
 const _MINT_TOPIC = "0xcf6fbb9dcea7d07263ab4f5c3a92f53af33dffc421d9d121e1c74b307e68189d";
@@ -44,7 +44,7 @@ const _MINIMUM_TARGET_BN = new Eth.BN(_MINIMUM_TARGET);
 const _IDEAL_BLOCK_TIME_SECONDS = 60 * 10  //_ETH_BLOCKS_PER_REWARD * _SECONDS_PER_ETH_BLOCK;
 
 /* TODO: figure out why it doesn't work w metamask */
-var eth = new Eth(new Eth.HttpProvider("https://sepolia.base.org"));
+var eth = new Eth(new Eth.HttpProvider("https://mainnet.base.org"));
 //var eth = new Eth(new Eth.HttpProvider("https://base-sepolia.infura.io/v3/b8af241874c24ec78721b46e19c26c8a"));
 // if (typeof window.web3 !== 'undefined' && typeof window.web3.currentProvider !== 'undefined') {
 //   var eth = new Eth(window.web3.currentProvider);
@@ -53,9 +53,9 @@ var eth = new Eth(new Eth.HttpProvider("https://sepolia.base.org"));
 //   log("warning: no web3 provider found, using infura.io as backup provider")
 // }
 
-var _BLOCK_EXPLORER_ADDRESS_URL = 'https://sepolia.basescan.org/address/';
-var _BLOCK_EXPLORER_TX_URL = 'https://sepolia.basescan.org/tx/';
-var _BLOCK_EXPLORER_BLOCK_URL = 'https://sepolia.basescan.org/block/';
+var _BLOCK_EXPLORER_ADDRESS_URL = 'https://basescan.org/address/';
+var _BLOCK_EXPLORER_TX_URL = 'https://basescan.org/tx/';
+var _BLOCK_EXPLORER_BLOCK_URL = 'https://basescan.org/block/';
 
 /* colors used by pool names. todo: move to css, still use them for chart.js */
 var pool_colors = {

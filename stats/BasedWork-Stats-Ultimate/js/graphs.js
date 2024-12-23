@@ -13,7 +13,7 @@
  */
 //USE value 19140037 for everything
 
-var ethblockstart = 19140037
+var ethblockstart = 24007014
 var adjustAverageRewardTimeGraph = 2711
 class contractValueOverTime {
   constructor(eth, contract_address, storage_index, descriptor) {
