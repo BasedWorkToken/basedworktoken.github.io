@@ -209,13 +209,13 @@ pre {
      background-color: white;
  }
  .btnsex{
-  background-color: black;
+
+    background: linear-gradient(to right, #d16de6, #5bd5f4); /* Correct usage of gradient */
   color: white;
 }
  .btnsex:hover{
      color: white;
-     background-color: #F1592A;
- }
+    background: linear-gradient(to right, #5bd5f4, #d16de6); /* Correct usage of gradient */ }
  .btnsex:active{
      color: black;
      background-color: white;
@@ -464,13 +464,13 @@ background-color:#282d32;
   }
   
   div .addedclass1 {
-    background-image:url('../img/forge_orange.png'); background-size: contain; padding: 5%;
+    background-image:url('https://testnet.basedworktoken.org/img/banner_orange.png'); background-size: contain; padding: 5%;
   }
   div .addedclass2 {
-    background-image:url('../img/forge_black.png'); background-size: contain; padding: 5%;
+    background-image:url('https://testnet.basedworktoken.org/img/banner4.png'); background-size: contain; padding: 5%;
   }
   div .addedclass3 {
-    background-image:url('../img/forge_orange_wallet.png'); background-size: contain; padding: 5%;
+    background-image:url('https://testnet.basedworktoken.org/img/banner5.png'); background-size: contain; padding: 5%;
   }
   .addedstylefooter{
     margin-top: 5%;
@@ -482,25 +482,67 @@ background-color:#282d32;
     padding:0px
   }
   .addedstylediv{
-    padding-top: 0%;margin-top: 5%;
+    padding-top: 0%;margin-top: 0%;
   }
   .contractbtn{
     float: right;
   }
   .btnsex2{
-    background-color: #8145e5;
+       margin: 3px;
+    background: linear-gradient(to right, #bc79ef, #dc67e7); /* Correct usage of gradient */
      color: white;
   }
-  .btnsex3{
+ .btnsex2:hover{
+     color: white;
+    background: linear-gradient(to right, #dc67e7, #bc79ef); /* Correct usage of gradient */ /* Correct usage of gradient */ }
+ .btnsex2:active{
+     color: black;
+     background-color: white;
+ }
+.btnsex21{
+       margin: 3px;
+    background: purple; /* Correct usage of gradient */
+     color: white;
+  }
+ .btnsex21:hover{
+     color: white;
+    background: orange; /* Correct usage of gradient */ /* Correct usage of gradient */ }
+ .btnsex21:active{
+     color: black;
+     background-color: white;
+ }.btnsex22{
+    
+    background: #9656ce; /* Correct usage of gradient */
+     color: white;
+  }
+ .btnsex22:hover{
+     color: white;
+    background: orange; /* Correct usage of gradient */ /* Correct usage of gradient */ }
+ .btnsex22:active{
+     color: black;
+     background-color: white;
+ }
 
+
+  .btnsex3{
+   margin: 3px;
   position: right;
-    background-color: #F1592A;
+    background-color: #85BB65;
      color: white;
      padding: 10px;
  z-index: 100; /* Ensure it floats above other content */
 f
   }
+
+  .btnsex33{
+   margin: 3px;
+    background-color: #F1592A;
+     color: white;
+ z-index: 100; /* Ensure it floats above other content */
+f
+  }
   .btnsex4{
+   margin: 3px;
     background-color: #27C2F1;
     color: white;
   }
