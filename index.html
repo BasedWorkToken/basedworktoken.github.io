@@ -47,7 +47,7 @@
 
  <style>
 body{
-  background: url(https://testnet.basedworktoken.org/img/abstract-2829961.png);
+  background: url(https://basedworktoken.org/img/background-tria.png);
     background-repeat: no-repeat;
 background-attachment: fixed;
     background-size: 100% 100vh;}
@@ -57,14 +57,11 @@ background-attachment: fixed;
             text-align: center;
         }
         .time-unit {
-            display: inline-block;
+
+        	display: block; /* Ensures each time unit is on a new line */
+          
             margin: 0 10px;
         }
-        .time-unit span {
-            font-size: 7.5rem;
-            font-weight: bold;
-        }
-        
         #notice {
             text-align: center;
             font-size: 3rem; /* Adjust size as needed */
@@ -183,16 +180,16 @@ background-attachment: fixed;
 		<h3><center>Feb. 5th 4pm GMT/UTC</center></h3>
 <div id="countdown">
     <div class="time-unit" id="days-container"">
-    <span id="days">00</span> Days
-</div>
+     Days: <span id="days">00</span> 
+</div><br>
 <div class="time-unit" id="hours-container"">
-    <span id="hours">00</span> Hours
-</div>
+     Hours: <span id="hours">00</span> 
+</div><br>
 <div class="time-unit" id="minutes-container"">
-    <span id="minutes">00</span> Minutes
-</div>
+     Minutes: <span id="minutes">00</span> 
+</div><br>
 <div class="time-unit" id="seconds-container"">
-    <span id="seconds">00</span> Seconds
+   Seconds: <span id="seconds">00</span> 
 </div>
 </div>
 
@@ -204,27 +201,42 @@ background-attachment: fixed;
 
     // Function to update the countdown
     function updateCountdown(targetEpoch) {
-        const currentTime = Math.floor(Date.now()); // Current time in seconds
-        const timeDifference = targetEpoch*1000 - currentTime;
+         const currentTime = Date.now(); // Current time in milliseconds
+    const timeDifference = targetEpoch * 1000 - currentTime;
+    
+    // Debug logging
+    console.log('Current Time:', new Date(currentTime).toISOString());
+    console.log('Target Time:', new Date(targetEpoch * 1000).toISOString());
+    console.log('Time Difference (ms):', timeDifference);
+    
+    if (timeDifference <= 0) {
+        document.getElementById('countdown').innerHTML = "Countdown Complete!";
+        clearInterval(interval);
+        return;
+    }
+    
+    // Calculate time units
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+    
+    // Debug logging for each unit
+    console.log('Days:', days);
+    console.log('Hours:', hours);
+    console.log('Minutes:', minutes);
+    console.log('Seconds:', seconds);
+    
+    // Format numbers to always show two digits
 
-        if (timeDifference <= 0) {
-            document.getElementById('countdown').innerHTML = "Countdown Complete!";
-            clearInterval(interval);
-            return;
-        }
 
-        // Calculate time units
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-        // Display logic based on remaining time
+  // Display logic based on remaining time
         if (days > 0) {
             document.getElementById('days-container').style.display = "inline";
             document.getElementById('hours-container').style.display = "inline";
-            document.getElementById('minutes-container').style.display = "none";
+            document.getElementById('minutes-container').style.display = "inline";
             document.getElementById('seconds-container').style.display = "none";
+            document.getElementById('minutes').textContent = formatTimeUnit(minutes);
             document.getElementById('hours').textContent = formatTimeUnit(hours);
             document.getElementById('days').textContent = formatTimeUnit(days);
         } else if (hours > 0) {
@@ -264,11 +276,7 @@ background-attachment: fixed;
             </div>
             <!-- This is where users can view our tokenomics on the index page-->   
  
-    <div id="notice">
-        Mainnet Website<br>All Links are live!
-	<!-- <a href="https://basedworktoken.org"">Go to Mainnet website</a> -->
-    </div>
-               
+ 
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
