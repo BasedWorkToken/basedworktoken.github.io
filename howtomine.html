@@ -134,31 +134,41 @@
         </div>
     <!--whitepaper start, "h" tags are headers, and "pre" tags are pre formatted information-->
     <div style="padding:5%;">
-        <h4 style="text-align: left;">Requirements to Mine</h4>
- <!--   <p>A Polygon Account.  </p><p>Scroll Down for FPGA mining information</p>
--->
-      <!--  <h4 style="text-align: left;">GPU Mining - Pool Mode</h4>
-        <pre>
-This Guide is for GPU miners on Windows computers -->
-  <pre>First, download and install these 3 dependencies to mine Based Work Tokens.           
+        <h4 style="text-align: left;">Ubuntu How to Mine</h4>
+<h2><a href="https://www.youtube.com/watch?v=qPtAkWiDmgM">Click Here to watch the Ubuntu setup video</a></h2>
+Make sure latest Nvidia updates are installed, CUDA 11.2 requires a minimum Nvidia driver version of 528 
+	<a href="https://www.nvidia.com/drivers/beta" target="_blank"><b>https://www.nvidia.com/drivers/beta</b></a>
+
+After that, extract BasedWorkToken.zip from
+<h4>Linux Ubuntu 22&24: <a href="https://github.com/BasedWorkToken/BWORK-Miner-Ubuntu-22-24-Mainnet" target="_blank"><b>BWORK-Mainnet-Ubuntu-22&24</b>  </a>
+</h4>
+<h4>Linux Ubuntu 16,18,20: <a href="https://github.com/BasedWorkToken/BWORK-Miner-Ubuntu-16-18-20-Mainnet" target="_blank"><b>BWORK-Mainnet-Ubuntu-16,18,20-Miner **requires .net 5.0**</b>  </a>
+</h4>
+
+Download the .zip from the Github website, then give permission for 1BasedWorkToken.sh to be executable.
+Then run 1BasedWorkToken.sh by typing ./1BasedWorkToken.sh in a Terminal in the miner folder.
+This will install the DotNet dependicies automatically.
+
+For Ubuntu 16,18, & 20 it will install dotnet 5.0
+For Ubuntu 22 & 24 it will install dotnet 6.0
+
+Rerun ./1BasedWorkToken.sh after dotnet installs to run the miner!
+</pre>
+
+	    
+    <div style="padding:5%;">
+        <h4 style="text-align: left;">Windows How to Mine</h4>
+  <pre>First, download and install these dependencies to mine Based Work Tokens.           
 D&I - .NET Core 6.0 
 	<a href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.428-windows-x64-installer" target="_blank"><b>https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.428-windows-x64-installer</b></a>
-D&I - VC++ 2019
-	<a href="https://aka.ms/vs/16/release/vc_redist.x64.exe" target="_blank"><b>https://aka.ms/vs/16/release/vc_redist.x64.exe</b></a>
-<b>(https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)</b>
-Make sure latest Nvidia updates are installed, CUDA 9.2 requires a minimum Nvidia driver version of 396 
+
+Make sure latest Nvidia updates are installed, CUDA 12.5 requires a minimum Nvidia driver version of 528
 	<a href="https://www.nvidia.com/drivers/beta" target="_blank"><b>https://www.nvidia.com/drivers/beta</b></a>
 
 After that, extract BasedWorkToken.zip from
 <h4>Windows: <a href="https://github.com/BasedWorkToken/BWORK-Windows-Miner-Mainnet" target="_blank"><b>BWORK-Mainnet-Windows-Miner</b></a>
 </h4>
-or
-<h4>Linux Ubuntu 22&24: <a href="https://github.com/BasedWorkToken/BWORK-Miner-Ubuntu-22-24-Mainnet" target="_blank"><b>BWORK-Mainnet-Ubuntu-22&24</b>  </a>
-</h4>
-<h4>Linux Ubuntu 16,18,20: <a href="https://github.com/BasedWorkToken/BWORK-Miner-Ubuntu-16-18-20-Mainnet" target="_blank"><b>BWORK-Mainnet-Ubuntu-16,18,20-Miner **requires .net 5.0**</b>  </a>
-</h4>
-</pre>
-  <h4 style="text-align: left;">Solo Mining - GPU/CPU</h4>
+
 <pre>This requires the miner to supply Ethereum ON Base network to their address with a privateKey and Address for transaction fees.
 <a href="https://jumper.exchange/?fromChain=8453&toChain=8453&toToken=0x0000000000000000000000000000000000000000"><b>Click here to bridge funds from another blockchain to Base Blockchain</b></a>
 <a href="https://basedworktoken.org/img/Bridge_to_Base.png"><b>Example Bridge screenshot</b></a>
