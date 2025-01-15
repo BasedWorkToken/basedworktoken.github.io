@@ -153,10 +153,23 @@ For Ubuntu 16,18, & 20 it will install dotnet 5.0
 For Ubuntu 22 & 24 it will install dotnet 6.0
 
 Rerun ./1BasedWorkToken.sh after dotnet installs to run the miner!
+
+<pre>This requires the miner to supply Ethereum ON Base network to their address with a privateKey and Address for transaction fees.
+<a href="https://jumper.exchange/?fromChain=8453&toChain=8453&toToken=0x0000000000000000000000000000000000000000"><b>Click here to bridge funds from another blockchain to Base Blockchain</b></a>
+<a href="https://basedworktoken.org/img/Bridge_to_Base.png"><b>Example Bridge screenshot</b></a>
+Open the BasedWorkToken.conf file and edit in your privateKey and Public Address.
+Insert the address you will be mining from. (Base Address) 
+Insert your wallets private key into the "privateKey" section
+A seperate private key is suggested for mining, so your main private keys remain confidential.
+
+YOU MUST Supply your address with Ethereum to pay gas costs to mint on the Base blockchain ID: 8453 
+<a href="https://chainlist.org/chain/8453"><b>Click here to add the Base Blockchain to your Metamask</b></a>
+
+Run the BasedWorkToken_Start.bat script and you are now mining BWORK Tokens with a GPU on Windows!
+Run the 1BasedWorkToken.sh script and you are now mining BWORK Tokens with a GPU on Linux!  **Make sure to make 1BasedWorkToken.sh Executable!**
 </pre>
 
 	    
-    <div style="padding:5%;">
         <h4 style="text-align: left;">Windows How to Mine</h4>
   <pre>First, download and install these dependencies to mine Based Work Tokens.           
 D&I - .NET Core 6.0 
