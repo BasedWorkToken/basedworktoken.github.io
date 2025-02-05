@@ -678,10 +678,10 @@ async function connectMetaMask22() {
 		        try {
 		            await window.ethereum.request({
 		                method: 'wallet_switchEthereumChain',
-		                params: [{ chainId: '0x1' }] // Chain ID in hexadecimal (84532 = 0x14a34)
+		                params: [{ chainId: '0x1' }] // Chain ID in hexadecimal (1 = 0x1)
 		            });
-		            document.getElementById('status').textContent = 'Switched to Base Sepolia Network';
-		            document.getElementById('status2').textContent = 'Switched to Base Sepolia Network';
+		            document.getElementById('status').textContent = 'Switched to Ethereum Network';
+		            document.getElementById('status2').textContent = 'Switched to Ethereum Network';
 		        } catch (switchError) {
                     console.log("Switch error: ", switchError.message);
 		            // Add network if not available
