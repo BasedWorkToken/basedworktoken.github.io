@@ -173,99 +173,7 @@ background-attachment: fixed;
             <span class="icon-next"></span>
         </a>
     </header>
-   
 
-
- <h1><center>Countdown to Mining Launch</center></h1>
-		<h3><center>Feb. 5th 4pm GMT/UTC</center></h3>
-<div id="countdown">
-    <div class="time-unit" id="days-container"">
-     Days: <span id="days">00</span> 
-</div><br>
-<div class="time-unit" id="hours-container"">
-     Hours: <span id="hours">00</span> 
-</div><br>
-<div class="time-unit" id="minutes-container"">
-     Minutes: <span id="minutes">00</span> 
-</div><br>
-<div class="time-unit" id="seconds-container"">
-   Seconds: <span id="seconds">00</span> 
-</div>
-</div>
-
-<script>
-    // Function to format time units
-    function formatTimeUnit(unit) {
-        return unit < 10 ? `0${unit}` : `${unit}`;
-    }
-
-    // Function to update the countdown
-    function updateCountdown(targetEpoch) {
-         const currentTime = Date.now(); // Current time in milliseconds
-    const timeDifference = targetEpoch * 1000 - currentTime;
-    
-    // Debug logging
-    console.log('Current Time:', new Date(currentTime).toISOString());
-    console.log('Target Time:', new Date(targetEpoch * 1000).toISOString());
-    console.log('Time Difference (ms):', timeDifference);
-    
-    if (timeDifference <= 0) {
-        document.getElementById('countdown').innerHTML = "Countdown Complete!";
-        clearInterval(interval);
-        return;
-    }
-    
-    // Calculate time units
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-    
-    // Debug logging for each unit
-    console.log('Days:', days);
-    console.log('Hours:', hours);
-    console.log('Minutes:', minutes);
-    console.log('Seconds:', seconds);
-    
-    // Format numbers to always show two digits
-
-
-  // Display logic based on remaining time
-        if (days > 0) {
-            document.getElementById('days-container').style.display = "inline";
-            document.getElementById('hours-container').style.display = "inline";
-            document.getElementById('minutes-container').style.display = "inline";
-            document.getElementById('seconds-container').style.display = "none";
-            document.getElementById('minutes').textContent = formatTimeUnit(minutes);
-            document.getElementById('hours').textContent = formatTimeUnit(hours);
-            document.getElementById('days').textContent = formatTimeUnit(days);
-        } else if (hours > 0) {
-            document.getElementById('days-container').style.display = "none";
-            document.getElementById('hours-container').style.display = "inline";
-            document.getElementById('minutes-container').style.display = "inline";
-            document.getElementById('seconds-container').style.display = "inline";
-            document.getElementById('hours').textContent = formatTimeUnit(hours);
-            document.getElementById('minutes').textContent = formatTimeUnit(minutes);
-            document.getElementById('seconds').textContent = formatTimeUnit(seconds);
-        } else {
-            document.getElementById('days-container').style.display = "none";
-            document.getElementById('hours-container').style.display = "none";
-            document.getElementById('minutes-container').style.display = "inline";
-            document.getElementById('seconds-container').style.display = "inline";
-            document.getElementById('minutes').textContent = formatTimeUnit(minutes);
-            document.getElementById('seconds').textContent = formatTimeUnit(seconds);
-        }
-    }
-
-    // Set your target epoch time here (in seconds)
-    const targetEpoch = 1738771200; // Replace with your epoch time
-
-    // Start the countdown
-    const interval = setInterval(() => updateCountdown(targetEpoch), 1000);
-</script>
-
-
-    </header>
     <!-- Page Content -->
     <div class="container addedstylediv">
         <!-- Marketing Icons Section -->
@@ -280,7 +188,7 @@ background-attachment: fixed;
             <div class="md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2><img alt="BWORK" src="./img/BWORK.png" width="50" height="50" style="margin-right: 1%;">Based Work Token Information</h2><h4>Base Token Contract: 0x677F124CD209489F6621eebDFdA1E32c625214d4</4><h4>Mainnet Contract: 0x2f38b1a516239739cdcd2c228d1eb96e29800975</h4>
+                        <h2><img alt="BWORK" src="./img/BWORK.png" width="50" height="50" style="margin-right: 1%;">Based Work Token Information</h2><h4>Base Token Contract: 0x677F124CD209489F6621eebDFdA1E32c625214d4</4><h4>Ethereum Token Contract: 0x2f38b1a516239739cdcd2c228d1eb96e29800975</h4>
                         
                     </div>
 
