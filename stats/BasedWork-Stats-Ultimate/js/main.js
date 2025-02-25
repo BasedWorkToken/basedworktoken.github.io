@@ -258,7 +258,7 @@ stats = [
 ['Token Holders',                 null,                                 "holders",          1,          null     ], /* usage */
 	
  ['Successful Mint Transactions',       null,                                 "txs",   1, null     ], /* mining */
-  ['Total USD Spent Minting Tokens',       null,                                 "txs",   1, null     ], /* mining */
+/*  ['Total USD Spent Minting Tokens',       null,                                 "txs",   1, null     ], */
   ['Token Transfers',               null,                                 "transfers",        1,          null     ], /* usage */
   ['Total Contract Operations',     null,                                 "txs",              1,          null     ], /* usage */
  ['Last Eth Block',                null,                      "",                 1,          null     ], /* mining */
@@ -1411,7 +1411,7 @@ const formattedNumberfffff2FFFF = new Intl.NumberFormat(navigator.language).form
     };
 	var totalSpentINUSD = 0;
     var innerhtml_buffer = '<tr><th>Miner</th><th>Total Epochs Minted Count</th>'
-      + '<th>% of Minted</th><th>Transaction Count</th><th>TOTAL zkBitcoin Mined</th><th>Total USD Spent Minting</th></tr>';
+      + '<th>% of Minted</th><th>Transaction Count</th><th>TOTAL zkBitcoin Mined</th>/tr>';
     sorted_miner_block_count.forEach(function(miner_info) {
       var addr = miner_info[0];
 // Find the matching address in combinedAddresses
@@ -1442,16 +1442,16 @@ const formattedNumberfffff2 = new Intl.NumberFormat(navigator.language).format(R
       innerhtml_buffer += '<tr><td>'
         + miner_name_link + '</td><td>'
         + blocks + '</td><td>'
-        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td>'+TotalBlocksPerReward+'</td><th style="white-space: nowrap">'+formattedNumberfffff2+' zkBitcoin</th><th>'+totalCostForUser.toFixed(2)+' $</th></tr>';
+        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td>'+TotalBlocksPerReward+'</td><th style="white-space: nowrap">'+formattedNumberfffff2+' zkBitcoin</th></tr>';
     });
 const formattedNumberfffff23 = new Intl.NumberFormat(navigator.language).format(totalZKTC_Calculated.toFixed(0));
 
 	
-	el_safe('#TotalUSDSpentMintingTokens').innerHTML = "<b>" + totalSpentINUSD.toLocaleString(undefined, {
+	/* el_safe('#TotalUSDSpentMintingTokens').innerHTML = "<b>" + totalSpentINUSD.toLocaleString(undefined, {
   minimumFractionDigits: 0,
   maximumFractionDigits: 2
 }) + "</b> $";
-	
+	*/
   el_safe('#SuccessfulMintTransactions').innerHTML = "<b> "+(total_tx_count).toLocaleString()+" </b> txs";
     /* add the last row (totals) */
     innerhtml_buffer += '<tr><td style="border-bottom: 0rem;">TOTAL:</td><td style="border-bottom: 0rem;">'
