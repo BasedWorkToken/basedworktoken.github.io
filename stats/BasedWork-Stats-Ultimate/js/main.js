@@ -7,7 +7,7 @@ function addToURL(value){
 
 const version = "v0.1.0";
 
-log('zkBitcoin Stats', version);
+log('BWORK Stats', version);
 el('#footerversion').innerHTML = version;
 
 
@@ -1349,7 +1349,7 @@ const priceOf1ETHinUSDCf = tokensUSDC_Pool2f / tokensETH_Pool2f;
 	
 	
     var innerhtml_buffer2 = '<tr><th>Miner</th><th>Recent Epochs Minted Count</th>'
-      + '<th>% of Minted</th><th>Recent Miner Hashrate</th><th>Transaction Count</th><th>Recent zkBitcoin Mined By User</th></tr>';
+      + '<th>% of Minted</th><th>Recent Miner Hashrate</th><th>Transaction Count</th><th>Recent BWORK Mined By User</th></tr>';
     sorted_miner_block_count_recent_hash.forEach(function(miner_info) {
       var addr = miner_info[0];
       var blocks = miner_info[1];
@@ -1370,7 +1370,7 @@ const formattedNumberfffff2 = new Intl.NumberFormat(navigator.language).format(R
       innerhtml_buffer2 += '<tr><td>'
         + miner_name_link + '</td><td>'
         + blocks + '</td><td>'
-        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td style="white-space: nowrap;">'+ toReadableHashrate(percent_of_total_blocks*estimated_network_hashrate, false)+ '</td><td>'+TotalBlocksPerReward+'</td><th>'+formattedNumberfffff2+' zkBitcoin</th></tr>';
+        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td style="white-space: nowrap;">'+ toReadableHashrate(percent_of_total_blocks*estimated_network_hashrate, false)+ '</td><td>'+TotalBlocksPerReward+'</td><th>'+formattedNumberfffff2+' BWORK</th></tr>';
     });
 	
 const formattedNumberfffff2FFFF = new Intl.NumberFormat(navigator.language).format(a_formattedNumberfffff2);
@@ -1379,7 +1379,7 @@ const formattedNumberfffff2FFFF = new Intl.NumberFormat(navigator.language).form
       innerhtml_buffer2 += '<tr><td style="border-bottom: 0rem;">TOTAL:'
 		+ '</td><td style="border-bottom: 0rem;">'
         + totalblockz + '</td><td style="border-bottom: 0rem;">'
-        + '100%' + '</td><td style="border-bottom: 0rem;">'+ toReadableHashrate(estimated_network_hashrate, false)+ '</td><td style="border-bottom: 0rem;">'+totalBlockszzz+'</td><td style="border-bottom: 0rem;">'+formattedNumberfffff2FFFF+' zkBitcoin</td></tr>';
+        + '100%' + '</td><td style="border-bottom: 0rem;">'+ toReadableHashrate(estimated_network_hashrate, false)+ '</td><td style="border-bottom: 0rem;">'+totalBlockszzz+'</td><td style="border-bottom: 0rem;">'+formattedNumberfffff2FFFF+' BWORK</td></tr>';
 	
 	
 	el('#minerstats2').innerHTML = innerhtml_buffer2;
@@ -1411,7 +1411,7 @@ const formattedNumberfffff2FFFF = new Intl.NumberFormat(navigator.language).form
     };
 	var totalSpentINUSD = 0;
     var innerhtml_buffer = '<tr><th>Miner</th><th>Total Epochs Minted Count</th>'
-      + '<th>% of Minted</th><th>Transaction Count</th><th>TOTAL zkBitcoin Mined</th>/tr>';
+      + '<th>% of Minted</th><th>Transaction Count</th><th>TOTAL BWORK Mined</th>/tr>';
     sorted_miner_block_count.forEach(function(miner_info) {
       var addr = miner_info[0];
 // Find the matching address in combinedAddresses
@@ -1442,7 +1442,7 @@ const formattedNumberfffff2 = new Intl.NumberFormat(navigator.language).format(R
       innerhtml_buffer += '<tr><td>'
         + miner_name_link + '</td><td>'
         + blocks + '</td><td>'
-        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td>'+TotalBlocksPerReward+'</td><th style="white-space: nowrap">'+formattedNumberfffff2+' zkBitcoin</th></tr>';
+        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td>'+TotalBlocksPerReward+'</td><th style="white-space: nowrap">'+formattedNumberfffff2+' BWORK</th></tr>';
     });
 const formattedNumberfffff23 = new Intl.NumberFormat(navigator.language).format(totalZKTC_Calculated.toFixed(0));
 
@@ -1455,7 +1455,7 @@ const formattedNumberfffff23 = new Intl.NumberFormat(navigator.language).format(
   el_safe('#SuccessfulMintTransactions').innerHTML = "<b> "+(total_tx_count).toLocaleString()+" </b> txs";
     /* add the last row (totals) */
     innerhtml_buffer += '<tr><td style="border-bottom: 0rem;">TOTAL:</td><td style="border-bottom: 0rem;">'
-      + total_block_count + '</td><td style="border-bottom: 0rem;">100%</td><td style="border-bottom: 0rem;">' + total_tx_count + '</td><td style="border-bottom: 0rem;">'+formattedNumberfffff23+' zkBitcoin</td></tr>';
+      + total_block_count + '</td><td style="border-bottom: 0rem;">100%</td><td style="border-bottom: 0rem;">' + total_tx_count + '</td><td style="border-bottom: 0rem;">'+formattedNumberfffff23+' BWORK</td></tr>';
     el('#minerstats').innerHTML = innerhtml_buffer;
     log('done populating miner stats');
     // $(window).hide().show(0);
