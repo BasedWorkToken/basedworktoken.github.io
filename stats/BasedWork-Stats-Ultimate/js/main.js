@@ -81,8 +81,8 @@ var pool_colors = {
 }
 
 var known_miners = {
-  "0x49228d306754af5d16d477149ee50bef5ca286be" : [ "zkBitcoin Mining Pool", "http://pool.zkBitcoin.org/",     pool_colors.orange ], // mint helper contract (old)
-  "0x98181a5f3b91117426331b54e2a47e8fa74f56b0" : [ "zkBitcoin Mining Pool", "http://pool.zkBitcoin.org/",     pool_colors.orange ], // mint helper contract (old)
+  "0x49228d306754af5d16d477149ee50bef5ca286be" : [ "BWORK Mining Pool", "http://pool.basedworktoken.org/",     pool_colors.orange ], // mint helper contract (old)
+  "0x98181a5f3b91117426331b54e2a47e8fa74f56b0" : [ "BWORK Mining Pool", "http://pool.basedworktoken.org/",     pool_colors.orange ], // mint helper contract (old)
   "0xce2e772f8bcf36901bacf31dfc67e38954e15754" : [ "Mineable Token Pool", "https://pool.0xmt.com/",     pool_colors.orange ], // mint helper contract (old)
   "0xeabe48908503b7efb090f35595fb8d1a4d55bd66" : [ "ABAS Mining Pool", "http://pool.abastoken.org/",     pool_colors.orange ], // mint helper contract
   "0x53ce57325c126145de454719b4931600a0bd6fc4" : [ "0xPool",            "http://0xPool.io",               pool_colors.purple ], // closed sometime 2018
