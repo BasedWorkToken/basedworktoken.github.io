@@ -1518,7 +1518,7 @@ const formattedNumberparzedint = new Intl.NumberFormat(navigator.language).forma
 			  }
 				  innerhtml_buffer = finalstr;
 
-					if(eth_block > 29444550){
+					if(eth_block > 25990908){
 
 								 innerhtml_buffer  += '<tr><td align="right" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">'
 								+ get_date_from_eth_block(eth_block) + '</td><td>'
