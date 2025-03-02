@@ -44,7 +44,7 @@ const _MINIMUM_TARGET_BN = new Eth.BN(_MINIMUM_TARGET);
 const _IDEAL_BLOCK_TIME_SECONDS = 60 * 10  //_ETH_BLOCKS_PER_REWARD * _SECONDS_PER_ETH_BLOCK;
 
 /* TODO: figure out why it doesn't work w metamask */
-var eth = new Eth(new Eth.HttpProvider("https://mainnet.base.org"));
+var eth = new Eth(new Eth.HttpProvider("https://base-mainnet.g.alchemy.com/v2/G9pwTaVoKOkRTfL_0Ub-8BxoKp0DspwZ"));
 //var eth = new Eth(new Eth.HttpProvider("https://base-sepolia.infura.io/v3/b8af241874c24ec78721b46e19c26c8a"));
 // if (typeof window.web3 !== 'undefined' && typeof window.web3.currentProvider !== 'undefined') {
 //   var eth = new Eth(window.web3.currentProvider);
@@ -1035,7 +1035,7 @@ var total_TOTAL_mint_count_HASH = 0;
   log('blocks to search', blocks_to_search);
   var stop_log_search_at_loop = 0
   var start_log_search_at_loop = start_log_search_at;
-  var iterations = Math.ceil((blocks_to_search / 10000));
+  var iterations = Math.ceil((blocks_to_search / 100000));
   if (iterations <= 0) {
     iterations = 1
   }
@@ -1045,9 +1045,9 @@ var total_TOTAL_mint_count_HASH = 0;
   var attempts = 0
   while (run < iterations) {
     log('run', run + 1);
-    start_log_search_at_loop = start_log_search_at + (run * 10000)
+    start_log_search_at_loop = start_log_search_at + (run * 100000)
     run++;
-    stop_log_search_at_loop = start_log_search_at_loop + 9999
+    stop_log_search_at_loop = start_log_search_at_loop + 99999
     log('searching from block', start_log_search_at_loop, 'to block', stop_log_search_at_loop);
     //
   /* get all mint() transactions in the last N blocks */
