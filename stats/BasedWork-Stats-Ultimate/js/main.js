@@ -28,6 +28,10 @@ const _CONTRACT_ADDRESS = "0x2f38B1a516239739CdCD2C228D1Eb96E29800975"; // main 
 const Main_CONTRACT_ADDRESS = "0x2f38B1a516239739CdCD2C228D1Eb96E29800975"; // main Based Work Token Contract
 
 
+const _CONTRACT_USDCWETH_UNISWAP = "0xd0b53D9277642d899DF5C87A3966A349A798F224"; // main uniswap for USDC WETH on Uniswap v3 uses slot0
+const _CONTRACT_BWORK_WETH_UNISWAP_v4_HELPER = "0x2eb2522Cbe2B7000981CE6cb89e0c91D7B325bc4"; // Helps with interface for Uniswap v4 Pool finding Helper
+
+
 const _MINT_TOPIC = "0xcf6fbb9dcea7d07263ab4f5c3a92f53af33dffc421d9d121e1c74b307e68189d";
 const _MAXIMUM_TARGET_STR = "14474011154664524427946373126085988481658748083205070504932198000989141204992";  // 2**234 to 2**253  2**19 more
 const _MINIMUM_TARGET = 2**16;
@@ -110,6 +114,9 @@ var known_miners = {
   "0x69ded73bd88a72bd9d9ddfce228eadd05601edd7" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
 }
 
+
+const PoolWETHUSDCtoken = eth.contract(poolAbiSlot0).at(_CONTRACT_USDCWETH_UNISWAP);
+const PoolBWORKWETHtoken = eth.contract(poolAbiHELPER_Slot0).at(_CONTRACT_BWORK_WETH_UNISWAP_v4_HELPER);
 
 
 const token = eth.contract(tokenABI).at(_CONTRACT_ADDRESS);
@@ -216,6 +223,7 @@ function calculateNewMiningDifficulty(current_difficulty,
 stats = [
   /*Description                     promise which retuns, or null         units               multiplier  null: filled in later*/
 ['',                              null,                                 "",                 1,          null     ], /* */
+['Price of 1 Based Work Token in USD',                null,                      "",                 1,          null     ], /* mining */
 
 
 ['Mining Difficulty',             token.getMiningDifficulty,            "",                 0.000001907,          null     ], /* mining difficulty */
@@ -257,13 +265,15 @@ stats = [
  
 ['Token Holders',                 null,                                 "holders",          1,          null     ], /* usage */
 	
- ['Successful Mint Transactions',       null,                                 "txs",   1, null     ], /* mining */
+['Successful Mint Transactions',       null,                                 "txs",   1, null     ], /* mining */
+['Total USD Cost of All Mints',       null,                                 "txs",   1, null     ], /* mining */
 /*  ['Total USD Spent Minting Tokens',       null,                                 "txs",   1, null     ], */
   ['Token Transfers',               null,                                 "transfers",        1,          null     ], /* usage */
   ['Total Contract Operations',     null,                                 "txs",              1,          null     ], /* usage */
  ['Last Eth Block',                null,                      "",                 1,          null     ], /* mining */
-  ['Last ZK Sync Era Block Number',                eth.blockNumber,                      "",                 1,          null     ], /* mining */
- ['',                              null,                                 "",                 1,          null     ], /* */
+ ['Last ZK Sync Era Block Number',                eth.blockNumber,                      "",                 1,          null     ], /* mining */
+ ['u999',                PoolBWORKWETHtoken.getSlot0ForMyPool,                      "",                 1,          null     ], /* mining */
+ ['u1010',                PoolWETHUSDCtoken.slot0,                      "",                 1,          null     ], /* mining */
 
 ]
 
@@ -720,6 +730,25 @@ log("inflationCircl",circl)
   el_safe('#EstimatedHashrate').innerHTML = toReadableHashrate(hashrate, true);
 
 
+
+  var slot0_WETH_BWORK_POOL = getValueFromStats('u999', stats)
+  var tokensUSDC_PoolWETHUSDCtoken = getValueFromStats('u1010', stats)
+
+  console.log("GOT VALUE OF THIS: ",tokensUSDC_PoolWETHUSDCtoken);
+
+  console.log("Slot 0 of WETH_BWORK: ", slot0_WETH_BWORK_POOL);
+  var TOTAL_BWORK_WETH_PRICE = (slot0_WETH_BWORK_POOL/2**96)**2
+console.log("ETH VALUE OF BWORK IS IS : ",TOTAL_BWORK_WETH_PRICE );
+  var total_WETH_USD_Price= 1e12 * (tokensUSDC_PoolWETHUSDCtoken/2**96)**2
+  console.log("GOT VALUE TOTAL1 IS : ",total_WETH_USD_Price );
+
+var totalPriceof1Token = 1/TOTAL_BWORK_WETH_PRICE*total_WETH_USD_Price;
+  el_safe('#Priceof1BasedWorkTokeninUSD').innerHTML = "<b>"+totalPriceof1Token.toFixed(5)+"</b> $";
+	
+	
+
+  
+
 //Stats for Lower part, price, circulating supply $, and market cap $ and LP liquidity
 
 }
@@ -753,7 +782,7 @@ el('#TotalContractOperations').innerHTML = "<b>" + data["countTxs"].toLocaleStri
 async function fetchTransactionsData(miner_blk_cnt) {
     try {
         // Fetching the transactions data from the GitHub API
-        const transactionsData = await $.getJSON('https://raw.githubusercontent.com/ZKBitcoinToken/zkBitcoin-Home-Git/refs/heads/main/saveFiles/transaction_analysis_cost_summary.json');
+        const transactionsData = await $.getJSON('https://raw.githubusercontent.com/BasedWorkToken/Based-Work-Token-General/main/api/CostScript/saveFiles/BWORK_transaction_analysis_cost_summary.json');
         console.log("API DATA: ", transactionsData);
         const combinedData = combineWithMinerData(miner_blk_cnt, transactionsData);
         console.log("Combined Data: ", combinedData);
@@ -775,7 +804,7 @@ function combineWithMinerData(miner_blk_cnt, transactionsData) {
         const lowerCaseAddress = address.toLowerCase();
         
         // Find corresponding transaction entry for the address
-        const transactionEntry = transactionsData.find(entry => entry.to.toLowerCase() === lowerCaseAddress);
+        const transactionEntry = transactionsData.find(entry => entry.from.toLowerCase() === lowerCaseAddress);
         
         if (transactionEntry) {
             combinedData.push({
@@ -1341,11 +1370,19 @@ console.log("Combined Addresses: ", combinedAddresses);
 	
   var tokensETH_Pool1f = getValueFromStats('u77', stats)
   var tokensZKBTC_Pool1f = getValueFromStats('u88', stats)
-  var tokensETH_Pool2f = getValueFromStats('u99', stats)
-  var tokensUSDC_Pool2f = getValueFromStats('u1010', stats)
+  var slot0_WETH_BWORK_POOL = getValueFromStats('u999', stats)
+  var tokensUSDC_PoolWETHUSDCtoken = getValueFromStats('u1010', stats)
 
-const priceOf1ETHinUSDCf = tokensUSDC_Pool2f / tokensETH_Pool2f;
-	console.log("price of 1 eth in usd: ",priceOf1ETHinUSDCf );
+  console.log("GOT VALUE OF THIS: ",tokensUSDC_PoolWETHUSDCtoken);
+
+  console.log("Slot 0 of WETH_BWORK: ", slot0_WETH_BWORK_POOL);
+  var TOTAL_BWORK_WETH_PRICE = (slot0_WETH_BWORK_POOL/2**96)**2
+console.log("ETH VALUE OF BWORK IS IS : ",TOTAL_BWORK_WETH_PRICE );
+  var total_WETH_USD_Price= 1e12 * (tokensUSDC_PoolWETHUSDCtoken/2**96)**2
+  console.log("GOT VALUE TOTAL1 IS : ",total_WETH_USD_Price );
+
+var totalPriceof1Token = 1/TOTAL_BWORK_WETH_PRICE*total_WETH_USD_Price;
+  //el_safe('#Priceof1BasedWorkTokeninUSD').innerHTML = "<b>"+totalPriceof1Token.toFixed(5)+"</b> $";
 	
 	
     var innerhtml_buffer2 = '<tr><th>Miner</th><th>Recent Epochs Minted Count</th>'
@@ -1411,7 +1448,7 @@ const formattedNumberfffff2FFFF = new Intl.NumberFormat(navigator.language).form
     };
 	var totalSpentINUSD = 0;
     var innerhtml_buffer = '<tr><th>Miner</th><th>Total Epochs Minted Count</th>'
-      + '<th>% of Minted</th><th>Transaction Count</th><th>TOTAL BWORK Mined</th>/tr>';
+      + '<th>% of Minted</th><th>Transaction Count</th><th>TOTAL BWORK Mined</th><th>Total USD Spent Minting</th></tr>';
     sorted_miner_block_count.forEach(function(miner_info) {
       var addr = miner_info[0];
 // Find the matching address in combinedAddresses
@@ -1426,7 +1463,7 @@ if (matchingAddressData) {
 } else {
    // console.log("Address", addr, "not found in combinedAddresses.");
 }
-		totalCostForUser = totalCostForUser * priceOf1ETHinUSDCf;
+		totalCostForUser = totalCostForUser * total_WETH_USD_Price;
 		totalSpentINUSD+=totalCostForUser;
       var blocks = miner_info[1];
 	var RewardAmount = miner_info[2].toFixed(0);
@@ -1442,7 +1479,7 @@ const formattedNumberfffff2 = new Intl.NumberFormat(navigator.language).format(R
       innerhtml_buffer += '<tr><td>'
         + miner_name_link + '</td><td>'
         + blocks + '</td><td>'
-        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td>'+TotalBlocksPerReward+'</td><th style="white-space: nowrap">'+formattedNumberfffff2+' BWORK</th></tr>';
+        + (100*percent_of_total_blocks).toFixed(2) + '%' + '</td><td>'+TotalBlocksPerReward+'</td><th style="white-space: nowrap">'+formattedNumberfffff2+' BWORK</th><th>'+totalCostForUser.toFixed(3)+' $</th></tr>';
     });
 const formattedNumberfffff23 = new Intl.NumberFormat(navigator.language).format(totalZKTC_Calculated.toFixed(0));
 
@@ -1455,13 +1492,16 @@ const formattedNumberfffff23 = new Intl.NumberFormat(navigator.language).format(
   el_safe('#SuccessfulMintTransactions').innerHTML = "<b> "+(total_tx_count).toLocaleString()+" </b> txs";
     /* add the last row (totals) */
     innerhtml_buffer += '<tr><td style="border-bottom: 0rem;">TOTAL:</td><td style="border-bottom: 0rem;">'
-      + total_block_count + '</td><td style="border-bottom: 0rem;">100%</td><td style="border-bottom: 0rem;">' + total_tx_count + '</td><td style="border-bottom: 0rem;">'+formattedNumberfffff23+' BWORK</td></tr>';
+      + total_block_count + '</td><td style="border-bottom: 0rem;">100%</td><td style="border-bottom: 0rem;">' + total_tx_count + '</td><td style="border-bottom: 0rem;">'+formattedNumberfffff23+' BWORK</td><td style="border-bottom: 0rem;">'+totalSpentINUSD.toFixed(2)+' $</td></tr>';
     el('#minerstats').innerHTML = innerhtml_buffer;
     log('done populating miner stats');
     // $(window).hide().show(0);
     // $(window).trigger('resize');
 
     showBlockDistributionPieChart(piechart_dataset, piechart_labels);
+
+
+el_safe('#TotalUSDCostofAllMints').innerHTML = "<b>"+totalSpentINUSD.toFixed(2)+'</b> $';
 
     var blocks_since_last_reward = current_eth_block - last_reward_eth_block;
     var date_now = new Date();
@@ -1701,7 +1741,7 @@ https://github.com/MetaMask/metamask-extension/issues/22533.rewardRate,  "",    
 */
 
 var stustu = stat_name + "doMore2";
-if(goodStat && stat[0]!='Tokens distributed via Mining2' && stat[0]!='u2' && stat[0] != 'Current Mining Reward per 12 minute Solve' && stat[0] != 'u4' && stat[0] != 'u5' && stat[0] != 'u6' && stat[0] != 'u7' && stat[0] != 'Last Eth Block' && stat[0] != 'u8' && stat[0] != 'u9' && stat[0] != 'u77' && stat[0] != 'u88' && stat[0] != 'u99' && stat[0] != 'u1010'){
+if(goodStat && stat[0]!='Tokens distributed via Mining2' && stat[0]!='u2' && stat[0] != 'Current Mining Reward per 12 minute Solve' && stat[0] != 'u4' && stat[0] != 'u5' && stat[0] != 'u6' && stat[0] != 'u7' && stat[0] != 'Last Eth Block' && stat[0] != 'u8' && stat[0] != 'u9' && stat[0] != 'u77' && stat[0] != 'u88' && stat[0] != 'u99' && stat[0] != 'u999' && stat[0] != 'u1010'){
    
 
     el('#statistics').innerHTML += '<tr><td id="'+stustu.replace(/ /g,"")+'">'
