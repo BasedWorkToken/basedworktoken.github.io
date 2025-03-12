@@ -331,7 +331,7 @@ Attributions:
       <div style="display:none;" id="row-difficulty">
 		  
 <div id="topText">
-			<h1>Takes up to 1 minute to load all the data please wait</h1><br></br>
+			<h1>Takes up to 3-5 minutes to load all the data please wait</h1><br></br>
 </div>
         <div class="row">
 			
@@ -358,7 +358,6 @@ Attributions:
           </div>
         </div>
       </div>
-  	<!--
   <div style="display:none;" id="row-price-time">
         <div class="row">
           <div class="column"><h4 class="add-top-padding"><a name="price-time"></a>Average Price over last 60 days</h4></div>
@@ -373,7 +372,7 @@ Attributions:
       </div>	  
   <div style="display:none;" id="row-avgRevenue-time">
   <div id="topText2">
-			<h1>Takes up to 1 minute to load all the data please wait</h1><br></br>
+			<h1>Takes up to 3-5 minutes to load all the data please wait</h1><br></br>
 </div>
         <div class="row">
           <div class="column"><h4 class="add-top-padding"><a name="rev-time"></a>Average 24 Hour Revenue for 31 Gh/s</h4></div>
@@ -386,7 +385,6 @@ Attributions:
           </div>
         </div>
       </div>
-      -->
       <div id="row-footer">
         <div class="row add-top-padding add-bottom-padding-5">
           <div class="column">
@@ -474,7 +472,7 @@ Attributions:
           loadAllStats();
         }else if(searchParams.get('page') == 'graphs') {
           log('GRAPHS selected');
-          let days = 120;
+          let days = 45;
           let points = 60;
           $(document).attr("title", "Graphs - zkBitcoin Statistics");
           if(searchParams.get('days')) {
