@@ -18,9 +18,9 @@ var searchPoints2 = 120
 class contractValueOverTime {
   constructor(eth, contract_address, storage_index, descriptor) {
     /* how long to wait between sequential requests */
-    this.WAIT_DELAY_FIXED_MS = 600;
+    this.WAIT_DELAY_FIXED_MS = 120;
     /* how long to wait before retrying after a timeout */
-    this.WAIT_DELAY_ON_TIMEOUT_MS = 1000;
+    this.WAIT_DELAY_ON_TIMEOUT_MS = 1500;
 
     this.eth = eth;
     this.contract_address = contract_address;
