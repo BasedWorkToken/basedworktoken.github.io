@@ -17,7 +17,7 @@ const API_zkBTC_Users_tx_transactions = "https://raw.githubusercontent.com/Based
 const Forge_Pool_efficeny = 150/32 + 1  //150 min solves and 32 min on Forge only
 /* intrinsic values */
 /* intrinsic values */
-var _SECONDS_PER_ETH_BLOCK = 1;
+var _SECONDS_PER_ETH_BLOCK = 2;
 const _ZERO_BN = new Eth.BN(0, 10);
 /* contract constants */
 /* todo: pull these from the contract */
