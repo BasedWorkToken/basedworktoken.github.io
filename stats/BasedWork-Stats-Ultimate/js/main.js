@@ -1066,7 +1066,7 @@ var total_TOTAL_mint_count_HASH = 0;
   log('blocks to search', blocks_to_search);
   var stop_log_search_at_loop = 0
   var start_log_search_at_loop = start_log_search_at;
-  var iterations = Math.ceil((blocks_to_search / 100000));
+  var iterations = Math.ceil((blocks_to_search / 500));
   if (iterations <= 0) {
     iterations = 1
   }
@@ -1075,10 +1075,11 @@ var total_TOTAL_mint_count_HASH = 0;
   var run = 0
   var attempts = 0
   while (run < iterations) {
+    await sleep(1205);
     log('run', run + 1);
-    start_log_search_at_loop = start_log_search_at + (run * 100000)
+    start_log_search_at_loop = start_log_search_at + (run * 500)
     run++;
-    stop_log_search_at_loop = start_log_search_at_loop + 99999
+    stop_log_search_at_loop = start_log_search_at_loop + 499
     log('searching from block', start_log_search_at_loop, 'to block', stop_log_search_at_loop);
     //
   /* get all mint() transactions in the last N blocks */
@@ -1775,93 +1776,112 @@ function areAllBlockchainStatsLoaded(stats) {
   }
 }
 
-function updateStatsTable(stats){
-  stats.forEach(function(stat){
-    stat_name = stat[0]
-    stat_function = stat[1]
-    stat_unit = stat[2]
-    stat_multiplier = stat[3]
 
-
-
-    set_value = function(stats, stat_name, stat_unit, stat_multiplier, save_fn) {
-      return function(result) {
-        try {
-	
-	if(stat_name=="u77" || stat_name=="u99" || stat_name=="Pool 3 Num2 Token"){
-		xx = 1
-
-	}else if(stat_name=="Pool 2 Num2 Token"){
-		xx = 1
-
-
-	}else if(stat_name=="FIXMULTIESHERE"){
-		xx=3
-
-		
-	}else{
-		xx=0
-	}
-          result = result[xx].toString(10)
-        } catch (err) {
-          result = result.toString(10)
-        }
-if(stat_name =="u3"){
-
-
-
-
-
-
-}
-
-
-        result = result.toString(10)*stat_multiplier
-        save_fn(result)
-
-        /* modify some of the values on display */
-        if(stat_name == "Total Supply") {
-          result = result.toLocaleString();
-        } else if(stat_name == "Mining Difficulty"
-               || stat_name == "Tokens Minted"
-               || stat_name == "Max Supply for Current Era"
-               || stat_name == "Max Mined Supply for Current Era"
-               || stat_name == "Mined Supply Remaining in Era"
-               || stat_name == "Token Transfers"
-               || stat_name == "Total Contract Operations") {
-          result = result.toLocaleString()
-        }
-
-        el_safe('#' + stat_name.replace(/ /g,"")).innerHTML = "<b>" + result + "</b> " + stat_unit;
-
-        /* once we have grabbed all stats, update the calculated ones */
-        if(areAllBlockchainStatsLoaded(stats)) {
-          updateStatsThatHaveDependencies(stats);
-          /* hack: check if miner table exists - if it doesn't then skip loading blocks */
-          if(el('#minerstats')) {
-            setTimeout(()=>{updateAllMinerInfo(eth, stats, 24)}, 0);
-
+// Alternative version with retry logic for failed calls
+async function updateStatsTableBatchedWithRetry(stats, batchSize = 3, delayMs = 100, maxRetries = 2) {
+  const statsWithFunctions = stats.filter(stat => stat[1] !== null);
+  const batches = [];
+  
+  for (let i = 0; i < statsWithFunctions.length; i += batchSize) {
+    batches.push(statsWithFunctions.slice(i, i + batchSize));
+  }
+  
+  console.log(`Processing ${statsWithFunctions.length} stats in ${batches.length} batches`);
+  
+  for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
+    const batch = batches[batchIndex];
+    let retryCount = 0;
+    let batchSuccess = false;
+    
+    while (!batchSuccess && retryCount <= maxRetries) {
+      try {
+        console.log(`Processing batch ${batchIndex + 1}/${batches.length} (attempt ${retryCount + 1})`);
+        
+        const batchPromises = batch.map(stat => {
+          const [stat_name, stat_function, stat_unit, stat_multiplier] = stat;
+          
+          const set_value = function(stats, stat_name, stat_unit, stat_multiplier, save_fn) {
+            return function(result) {
+              try {
+                let xx = 0;
+                if(stat_name == "u77" || stat_name == "u99" || stat_name == "Pool 3 Num2 Token"){
+                  xx = 1;
+                } else if(stat_name == "Pool 2 Num2 Token"){
+                  xx = 1;
+                } else if(stat_name == "FIXMULTIESHERE"){
+                  xx = 3;
+                }
+                result = result[xx].toString(10);
+              } catch (err) {
+                result = result.toString(10);
+              }
+              
+              result = result.toString(10) * stat_multiplier;
+              save_fn(result);
+              
+              if(stat_name == "Total Supply") {
+                result = result.toLocaleString();
+              } else if(stat_name == "Mining Difficulty"
+                     || stat_name == "Tokens Minted"
+                     || stat_name == "Max Supply for Current Era"
+                     || stat_name == "Max Mined Supply for Current Era"
+                     || stat_name == "Mined Supply Remaining in Era"
+                     || stat_name == "Token Transfers"
+                     || stat_name == "Total Contract Operations") {
+                result = result.toLocaleString();
+              }
+              
+              el_safe('#' + stat_name.replace(/ /g,"")).innerHTML = "<b>" + result + "</b> " + stat_unit;
+            }
+          };
+          
+          if(stat_name === 'Mining Difficulty2') {
+            return stat_function(1).then(set_value(stats, stat_name, stat_unit, stat_multiplier, (value) => {stat[4]=value}));
+          } else {
+            return stat_function().then(set_value(stats, stat_name, stat_unit, stat_multiplier, (value) => {stat[4]=value}));
           }
+        });
+        
+        await Promise.all(batchPromises);
+        batchSuccess = true;
+        console.log(`Batch ${batchIndex + 1} completed successfully`);
+        
+      } catch (error) {
+        retryCount++;
+        console.error(`Error in batch ${batchIndex + 1}, attempt ${retryCount}:`, error);
+        
+        if (retryCount <= maxRetries) {
+          // Exponential backoff for retries
+          const retryDelay = delayMs * Math.pow(2, retryCount - 1);
+          console.log(`Retrying batch ${batchIndex + 1} in ${retryDelay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, retryDelay));
         }
       }
     }
-    /* run promises that store stat values */
-    if(stat_function !== null && stat_name ==='Mining Difficulty2' ) {
-      stat_function(1).then(set_value(stats, stat_name, stat_unit, stat_multiplier, (value) => {stat[4]=value}));
-    } else if(stat_function !== null)
-    {
-      stat_function().then(set_value(stats, stat_name, stat_unit, stat_multiplier, (value) => {stat[4]=value}));
+    
+    // Add delay between batches
+    if (batchIndex < batches.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, delayMs));
     }
-  });
-
-  /* hack: check if stat table exists - if it doesn't then skip api updates */
+  }
+  
+  // Trigger dependent updates
+  if(areAllBlockchainStatsLoaded(stats)) {
+    updateStatsThatHaveDependencies(stats);
+    if(el('#minerstats')) {
+      setTimeout(()=>{updateAllMinerInfo(eth, stats, 24)}, 0);
+    }
+  }
+  
   if(el('#TokenHolders')) {
     updateThirdPartyAPIs();
   }
 }
 
+
 function loadAllStats() {
-  updateStatsTable(stats);
+    updateStatsTableBatchedWithRetry(stats, 1, 1000, 60); // 3 per batch, 200ms delay, 2 retries
+
 }
 
 function updateAndDisplayAllStats() {
